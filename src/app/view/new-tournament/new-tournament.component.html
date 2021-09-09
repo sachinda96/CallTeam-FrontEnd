@@ -64,17 +64,17 @@
           </div>
           <div class="card-body">
             <div class="form-group">
-              <label for="name">Tournament Name</label>
-              <input type="text" id="name" name="name" class="form-control"  [(ngModel)]="sportPool.name">
+              <label for="tournamentName">Tournament Name</label>
+              <input type="text" id="tournamentName" name="tournamentName" class="form-control"  [(ngModel)]="tournament.tournamentName">
               <label style="color: red" *ngIf="nameValidate"> *Name is required</label>
             </div>
             <div class="form-group">
-              <label for="description">Tournament Description</label>
-              <textarea id="description" name="description" class="form-control" rows="2" [(ngModel)]="sportPool.description"></textarea>
+              <label for="tournamentDescription">Tournament Description</label>
+              <textarea id="tournamentDescription" name="tournamentDescription" class="form-control" rows="2" [(ngModel)]="tournament.tournamentDescription"></textarea>
             </div>
             <div class="form-group">
               <label for="inputStatus">District</label>
-              <select id="inputStatus" class="form-control custom-select" (change)="setDistrict($event)" [value]="sportPool.district">
+              <select id="inputStatus" class="form-control custom-select" (change)="setDistrict($event)" [value]="tournament.district">
                 <option selected disabled>Select one</option>
                 <option value="Galle">Galle</option>
                 <option value="Mathara">Mathara</option>
@@ -84,7 +84,7 @@
             </div>
             <div class="form-group">
               <label for="inputStatus">City</label>
-              <select id="city" class="form-control custom-select" (change)="setCity($event)" [value]="sportPool.city">
+              <select id="city" class="form-control custom-select" (change)="setCity($event)" [value]="tournament.city">
                 <option selected disabled>Select one</option>
                 <option value="Induruwa">Induruwa</option>
                 <option value="Ambalngoda">Ambalangoda</option>
@@ -94,19 +94,19 @@
             </div>
             <div class="form-group">
               <label for="inputProjectLeader">Date</label>
-              <input type="date" id="inputProjectLeader" class="form-control" [(ngModel)]="sportPool.stringDate"  min="{{stringDate}}">
+              <input type="date" id="inputProjectLeader" class="form-control" [(ngModel)]="tournament.stringDate"  min="{{stringDate}}">
               <label style="color: red" *ngIf="dateValidate"> *Date is required</label>
             </div>
 
             <div class="form-group">
               <label for="inputProjectLeader">Start Time</label>
-              <input type="time" id="starttime" class="form-control" [(ngModel)]="sportPool.startTime">
+              <input type="time" id="starttime" class="form-control" [(ngModel)]="tournament.startTime">
               <label style="color: red" *ngIf="startTimeValidate"> *Start time is required</label>
             </div>
 
             <div class="form-group">
               <label for="inputProjectLeader">End Time</label>
-              <input type="time" id="endtime" class="form-control" [(ngModel)]="sportPool.endTime">
+              <input type="time" id="endtime" class="form-control" [(ngModel)]="tournament.endTime">
               <label style="color: red" *ngIf="endTimeValidate"> *End time is required</label>
               <label style="color: red" *ngIf="endTimeGreterThanValidate"> *End time must be grater than end time</label>
             </div>
@@ -165,12 +165,12 @@
             </div>
             <div class="form-group">
               <label>No of Players</label>
-              <input type="text" id="nop" class="form-control" [(ngModel)]="sportPool.noOfPlayers">
+              <input type="text" id="nop" class="form-control" [(ngModel)]="tournament.noOfPlayers">
               <label style="color: red" *ngIf="nopThanValidate"> * No of players must be greater than 0</label>
             </div>
             <div class="form-group">
               <label>No of Teams</label>
-              <input type="text" id="nopteam" class="form-control" [(ngModel)]="sportPool.noOfPlayers">
+              <input type="text" id="nopteam" class="form-control" [(ngModel)]="tournament.noOfTeam">
               <label style="color: red" *ngIf="nopThanTeam"> * No of Teams must be greater than 2</label>
             </div>
           </div>

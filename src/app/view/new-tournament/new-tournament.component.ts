@@ -16,6 +16,8 @@ import Swal from "sweetalert2";
 import {UserPool} from "../../model/user-pool";
 import {Team} from "../../model/team";
 import {MERCHANT_ID} from "../../../environments/environment";
+import {Tournament} from "../../model/tournament";
+import {TournamentService} from "../../service/tournament.service";
 
 declare var payhere: any;
 
@@ -36,6 +38,7 @@ export class NewTournamentComponent implements OnInit {
   step4: boolean = false;
   selectEdit1: boolean = false;
   selectEdit2: boolean = false;
+  tournament : Tournament = new Tournament();
 
   activeGround: any = "";
   sportList:Array<Sport> = new Array<Sport>();
@@ -64,7 +67,7 @@ export class NewTournamentComponent implements OnInit {
   sportPoolReservation:SportPoolReservation = new SportPoolReservation();
   nopThanTeam: any;
 
-  constructor(private sportService:SportService,private route:Router,private userService:UserService,private sportPoolService:SportPoolService,private playGroundService:PlayGroundService,private datePipe : DatePipe) {
+  constructor(private sportService:SportService,private route:Router,private userService:UserService,private sportPoolService:SportPoolService,private playGroundService:PlayGroundService,private datePipe : DatePipe,private tournamentService:TournamentService) {
 
     payhere.onCompleted = function onCompleted(orderId: any) {
       console.log("Payment completed. OrderID:" + orderId);
@@ -114,9 +117,24 @@ export class NewTournamentComponent implements OnInit {
       this.activePool = "active";
 
       this.loading = true;
+
+      this.sportPool = new SportPool();
+      this.sportPool.sport = this.spot;
+      this.sportPool.noOfPlayers = this.tournament.noOfPlayers;
+      this.sportPool.city = this.tournament.city;
+      this.sportPool.name = this.tournament.tournamentName;
+      this.sportPool.endTime = this.tournament.endTime;
+      this.sportPool.startTime = this.tournament.startTime;
+      this.sportPool.description = this.tournament.tournamentDescription;
+      this.sportPool.date =new Date(this.tournament.stringDate);
+      this.sportPool.district = this.tournament.district;
+      this.sportPool.noOfTeam = this.tournament.noOfTeam;
+
       let userPool: UserPool = new UserPool();
       userPool.userDetailsDto = this.userDetails;
       userPool.poolDto = this.sportPool;
+      this.tournament.startDate = new Date(this.tournament.stringDate);
+
       this.sportPoolService.createPool(userPool).subscribe(
         res => {
           this.response = res;
@@ -206,7 +224,7 @@ export class NewTournamentComponent implements OnInit {
 
   setSelect(sport: Sport) {
     sport.selected =true;
-    this.sportPool.noOfPlayers = sport.numberOfPlayers;
+    this.tournament.noOfPlayers = sport.numberOfPlayers;
     this.spot = sport;
     this.sportList.forEach(e=>{
       if(e.id != this.spot.id){
@@ -216,11 +234,11 @@ export class NewTournamentComponent implements OnInit {
   }
 
   setDistrict(event: any) {
-    this.sportPool.district = event.target.value;
+    this.tournament.district = event.target.value;
   }
 
   setCity(event: any) {
-    this.sportPool.city = event.target.value;
+    this.tournament.city = event.target.value;
   }
 
   validateForm():boolean{
@@ -234,36 +252,41 @@ export class NewTournamentComponent implements OnInit {
     this.endTimeValidate = false;
     this.endTimeGreterThanValidate = false;
     this.nopThanValidate = false;
-    if(this.sportPool.name == ""){
+    if(this.tournament.tournamentName == ""){
       this.nameValidate = true;
       isValid = false;
     }
-    if(this.sportPool.district == ""){
+    if(this.tournament.district == ""){
       this.districtValidate = true;
       isValid = false;
     }
-    if(this.sportPool.city == ""){
+    if(this.tournament.city == ""){
       this.cityValidate = true;
       isValid = false;
     }
-    if(this.sportPool.stringDate == ""){
+    if(this.tournament.stringDate == ""){
       this.dateValidate = true;
       isValid = false;
     }
-    if(this.sportPool.startTime == ""){
+    if(this.tournament.startTime == ""){
       this.startTimeValidate = true;
       isValid = false;
     }
-    if(this.sportPool.endTime == ""){
+    if(this.tournament.endTime == ""){
       this.endTimeValidate = true;
       isValid = false;
-    }else if(this.sportPool.startTime >= this.sportPool.endTime){
+    }else if(this.tournament.startTime >= this.tournament.endTime){
       this.endTimeGreterThanValidate = true;
       isValid = false;
     }
 
-    if(this.sportPool.noOfPlayers == 0){
+    if(this.tournament.noOfPlayers == 0){
       this.nopThanValidate = true;
+      isValid = false;
+    }
+
+    if(this.tournament.noOfTeam <= 2){
+      this.nopThanTeam = true;
       isValid = false;
     }
 
@@ -370,13 +393,11 @@ export class NewTournamentComponent implements OnInit {
 
     this.loading = true;
 
-    this.sportPoolReservation.poolId =  this.reservation.poolId;
-    this.sportPoolReservation.poolDto = this.sportPool;
-    this.sportPoolReservation.userId = this.userDetails.userId;
-    this.sportPoolReservation.sportId = this.spot.id;
-    this.sportPoolReservation.groundId = this.playGround.id;
+    this.tournament.groundId = this.playGround.id;
+    this.tournament.sportId = this.spot.id;
+    this.tournament.poolId =  this.reservation.poolId;
 
-    this.sportPoolService.saveSportPool(this.sportPoolReservation).subscribe(
+    this.tournamentService.save(this.tournament).subscribe(
       response=>{
         this.loading = false;
         this.response = response;

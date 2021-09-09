@@ -2,6 +2,7 @@ import {Payment} from "./payment";
 
 export class Tournament {
 
+  poolId:string = "";
   tournamentName : string = "";
   tournamentDescription : string = "";
   startDate : Date = new Date();
@@ -14,4 +15,5 @@ export class Tournament {
   sportId : string = "";
   groundId :string = "";
   paymentDto : Payment = new Payment();
+  stringDate: string = "";
 }

@@ -14,14 +14,14 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   register(user:User):Observable<Response>{
-    return this.http.post<Response>(MAIN+"/user/register",user)
+    return this.http.post<Response>(MAIN+"/user/register",user);
   }
 
   updateProfile(formData:FormData):Observable<Response>{
-    return this.http.post<Response>(MAIN+"/user/updateProfile",formData)
+    return this.http.post<Response>(MAIN+"/user/updateProfile",formData);
   }
 
   getProfile(id:any):Observable<any>{
-    return this.http.get<any>(MAIN+"/user/getProfile/"+id)
+    return this.http.get<any>(MAIN+"/user/getProfile/"+id);
   }
 }

@@ -13,6 +13,7 @@ export class SportPool {
   endTime:string = "";
   sport:Sport = new Sport();
   noOfPlayers:number = 0;
+  noOfTeam :number = 2;
   teamDtoList:Array<Team> = new Array<Team>();
 
 }

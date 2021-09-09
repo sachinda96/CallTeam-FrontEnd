@@ -17,6 +17,7 @@ import { NewMatchComponent } from './view/new-match/new-match.component';
 import { MatchpoolComponent } from './view/matchpool/matchpool.component';
 import { JoinpoolComponent } from './view/joinpool/joinpool.component';
 import { NewTournamentComponent } from './view/new-tournament/new-tournament.component';
+import { ViewTournamentsComponent } from './view/view-tournaments/view-tournaments.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NewTournamentComponent } from './view/new-tournament/new-tournament.com
     NewMatchComponent,
     MatchpoolComponent,
     JoinpoolComponent,
-    NewTournamentComponent
+    NewTournamentComponent,
+    ViewTournamentsComponent
   ],
   imports: [
     BrowserModule,
