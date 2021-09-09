@@ -1,0 +1,401 @@
+<div class="preloader" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<div class="tm-top-a-box tm-full-width tm-box-bg-1 ">
+  <div class="uk-container uk-container-center">
+    <section id="tm-top-a" class="tm-top-a uk-grid uk-grid-collapse" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin="">
+
+      <div class="uk-width-1-1 uk-row-first">
+        <div class="uk-panel">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/head-bg.jpg');">
+            <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
+            <div class="uk-position-cover uk-flex uk-flex-center head-title">
+              <h1>New Match</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="uk-container uk-container-center alt" >
+  <ul class="uk-breadcrumb">
+    <li><a href="../../../index.html">Home</a>
+    </li>
+    <li class="uk-active"><span>New Match </span>
+    </li>
+  </ul>
+</div>
+<div class="content-wrapper" style="margin-left: 20px;margin-right: 20px;margin-bottom: 20px;margin-top: -30px">
+
+  <div class="container-fluid" id="grad1" >
+    <div class="row justify-content-center mt-0">
+      <div class="col-12 col-sm-10 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
+        <div class="cards px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2><strong>Compete Following Steps</strong></h2>
+          <p>create a new tournament</p>
+          <div class="row">
+            <div class="col-md-12 mx-0">
+              <form id="msform">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                  <li class="{{activeDetails}}" id="personal"><strong>Details</strong></li>
+                  <li class="{{activePool}}" id="account"><strong>Pool</strong></li>
+                  <li class="{{activeGround}}" id="payment"><strong>Ground</strong></li>
+                  <li  class="{{activeFinish}}" id="confirm"><strong>Finish</strong></li>
+                </ul> <!-- fieldsets -->
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="content" *ngIf="step1">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header" style="background-color: dodgerblue">
+            <h3 class="card-title" style="color: white">General</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name">Tournament Name</label>
+              <input type="text" id="name" name="name" class="form-control"  [(ngModel)]="sportPool.name">
+              <label style="color: red" *ngIf="nameValidate"> *Name is required</label>
+            </div>
+            <div class="form-group">
+              <label for="description">Tournament Description</label>
+              <textarea id="description" name="description" class="form-control" rows="2" [(ngModel)]="sportPool.description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="inputStatus">District</label>
+              <select id="inputStatus" class="form-control custom-select" (change)="setDistrict($event)" [value]="sportPool.district">
+                <option selected disabled>Select one</option>
+                <option value="Galle">Galle</option>
+                <option value="Mathara">Mathara</option>
+                <option value="Hambantota">Hambantota</option>
+              </select>
+              <label style="color: red" *ngIf="districtValidate"> *District is required</label>
+            </div>
+            <div class="form-group">
+              <label for="inputStatus">City</label>
+              <select id="city" class="form-control custom-select" (change)="setCity($event)" [value]="sportPool.city">
+                <option selected disabled>Select one</option>
+                <option value="Induruwa">Induruwa</option>
+                <option value="Ambalngoda">Ambalangoda</option>
+
+              </select>
+              <label style="color: red" *ngIf="cityValidate"> *City is required</label>
+            </div>
+            <div class="form-group">
+              <label for="inputProjectLeader">Date</label>
+              <input type="date" id="inputProjectLeader" class="form-control" [(ngModel)]="sportPool.stringDate"  min="{{stringDate}}">
+              <label style="color: red" *ngIf="dateValidate"> *Date is required</label>
+            </div>
+
+            <div class="form-group">
+              <label for="inputProjectLeader">Start Time</label>
+              <input type="time" id="starttime" class="form-control" [(ngModel)]="sportPool.startTime">
+              <label style="color: red" *ngIf="startTimeValidate"> *Start time is required</label>
+            </div>
+
+            <div class="form-group">
+              <label for="inputProjectLeader">End Time</label>
+              <input type="time" id="endtime" class="form-control" [(ngModel)]="sportPool.endTime">
+              <label style="color: red" *ngIf="endTimeValidate"> *End time is required</label>
+              <label style="color: red" *ngIf="endTimeGreterThanValidate"> *End time must be grater than end time</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-secondary">
+          <div class="card-header" style="background-color: #6a6865">
+            <h3 class="card-title" style="color: white">Sport</h3>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <div class="row" >
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                  <section class="content">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-10 offset-md-2">
+                          <form action="simple-results.html">
+                            <div class="input-group">
+                              <input [(ngModel)]="searchValue" id="searchValue" name="searchValue" type="search" class="form-control form-control-lg" placeholder="search sport"  (keypress)="search()" (keyup.enter)="search()">
+
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="card-body table-responsive p-0" style="height: 415px;">
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>Sport</th>
+                  <th>No of players</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let sport of teamSportList" >
+                  <td><img src="{{sport.imagePath}}" style="width: 100px;height: 70px"></td>
+                  <td>{{sport.name}}</td>
+                  <td>{{sport.numberOfPlayers}}</td>
+                  <td><i class="fa fa-check-square fa-2x" style="color: green" (click)="setSelect(sport)"></i></td>
+                  <td><i class="fa fa-window-close fa-2x" style="color: red" *ngIf="sport.selected" (click)="sport.selected = false"></i></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="form-group">
+              <label>No of Players</label>
+              <input type="text" id="nop" class="form-control" [(ngModel)]="sportPool.noOfPlayers">
+              <label style="color: red" *ngIf="nopThanValidate"> * No of players must be greater than 0</label>
+            </div>
+            <div class="form-group">
+              <label>No of Teams</label>
+              <input type="text" id="nopteam" class="form-control" [(ngModel)]="sportPool.noOfPlayers">
+              <label style="color: red" *ngIf="nopThanTeam"> * No of Teams must be greater than 2</label>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <input type="submit" value="Next" class="btn btn-primary float-right" style="width: 100px;height: 40px;" (click)="next1()">
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+
+  <div class="row" *ngIf="step2">
+    <div class="col-md-6" *ngFor="let team of reservation.teamDtoList">
+      <div class="card card-primary">
+        <div class="card-header" style="background-color: dodgerblue">
+          <h3 class="card-title" style="color: white" *ngIf="!selectEdit1">{{team.teamName}} <i *ngIf="!selectEdit1" class="fa fa-edit" style="color: orange;margin-top: 15px;margin-left: 20px" (click)="selectEdit1=true"></i></h3>
+          <input type="text" value="{{team.teamName}}" *ngIf="selectEdit1" style="width: 400px;height: 30px;"><i *ngIf="selectEdit1" class="fa fa-check-circle fa-2x" style="color: greenyellow;padding-left: 10px" (click)="selectEdit1=false"></i>
+        </div>
+        <br>
+        <div class="list_product_row uk-grid" data-uk-grid-match="{target:'.uk-panel'}">
+          <div *ngFor="let user of team.teamUserDtoList" class="uk-width-medium-1-4 uk-panel jswidth25 block_product">
+            <div class="product productitem_10">
+              <div class="image">
+                <div class="image_block" style="width: 200px;min-height: 200px;">
+                  <div class="product_label">
+                    <!--                    <img src="assets/ima" alt="Sale">-->
+                  </div>
+                  <a href="product.html">
+                    <img style=" max-width: 100%;height: auto;" class="jshop_img" src="{{user.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie" >
+                  </a>
+                  <div class="name">
+                    <h2 class="product_title"><a href="product.html">Join this team</a></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="mainblock">
+                <div class="price-wrap">
+                  <div class="old_price">
+                  </div>
+                  <div class="jshop_price">
+                    <span style="font-size: 15px;float: left" >{{user.name}} </span>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <a class="button_buy" href="#" *ngIf="user.name != null">Profile</a>
+                  <a class="button_buy" (click)="join(team)" *ngIf="user.name == null">Join</a>&nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+
+    </div>
+
+
+  </div>
+  <input *ngIf="step2" type="submit" value="Previous" class="btn btn-primary " style="width: 100px;height: 40px;" (click)="backPool()">
+  <input *ngIf="step2" type="submit" value="Next" class="btn btn-primary float-right" style="width: 100px;height: 40px;float: right" (click)="poolNext()">
+
+  <div class="row" *ngIf="step3">
+    <div class="col-md-12">
+      <div class="card card-primary">
+        <div class="card-header" style="background-color: dodgerblue">
+          <h3 class="card-title" style="color: white" *ngIf="!selectEdit1">Available Grounds 	&nbsp;	&nbsp;&nbsp; Sport: {{spot.name}} &nbsp;	&nbsp; Date: {{sportPool.date | date}} &nbsp;	&nbsp; Start Time: {{sportPool.startTime}} &nbsp;	&nbsp; End Time: {{sportPool.endTime}} &nbsp;	&nbsp; City: {{sportPool.city}}</h3>
+        </div>
+        <br>
+        <div class="list_product_row uk-grid" data-uk-grid-match="{target:'.uk-panel'}">
+          <div *ngFor="let ground of groundList" class="uk-width-medium-1-4 uk-panel jswidth25 block_product" >
+            <div class="product productitem_14">
+              <div class="image">
+                <div class="image_block">
+                  <div class="product_label">
+                    <img *ngIf="ground.id == playGround.id" src="assets/images/1840743.png" alt="Sale">
+                  </div>
+                  <a href="product.html">
+                    <img class="jshop_img" src="{{ground.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie">
+                  </a>
+                  <div class="name">
+                    <h2 class="product_title"><a (click)="selectGround(ground)">Select this ground</a></h2>
+                  </div>
+                </div>
+              </div>
+              <div class="mainblock">
+                <div class="price-wrap">
+                  <div class="old_price">
+                  </div>
+                  <div class="jshop_price">
+                    <span>{{ground.name}}</span>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <a class="button_buy" href="#">{{ground.price}}</a> &nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <input *ngIf="step3" type="submit" value="Previous" class="btn btn-primary " style="width: 100px;height: 40px;" (click)="backGround()">
+  <input *ngIf="step3" type="submit" value="Nex" class="btn btn-primary " style="width: 100px;height: 40px;float: right" (click)="nextFinal()">
+
+  <section class="content" *ngIf="step4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- Main content -->
+          <div class="invoice p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+              <div class="col-12">
+                <h4>
+                  <i class="fa fa-globe"></i> CallTeam, New Match.
+                  <small class="float-right">Date: {{date | date }}</small>
+                </h4>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+              <div class="col-sm-4 invoice-col">
+                Created Player
+                <address>
+                  <strong>{{userDetails.fullName}}</strong><br>
+                  {{userDetails.address}}<br>
+                  {{userDetails.deistic}}, {{userDetails.city}}<br>
+                  Phone: {{userDetails.contactNo}}<br>
+                  Email: {{userDetails.email}}
+                </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col">
+                <b>Match Details</b>
+                <br>
+                <strong>Sport : {{spot.name}}<br></strong>
+                <b> Start Date:</b> {{sportPool.date | date}}<br>
+                <b>Start Time:</b> {{sportPool.startTime}}<br>
+                <b>End Time:</b> {{sportPool.endTime}}
+
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col">
+                <b>Ground Details</b>
+                <br>
+                <b>Name :</b> {{playGround.name}}<br>
+                <b>Address:</b> {{playGround.address}}<br>
+                <b>City:</b> {{playGround.city}}<br>
+                <b>Contact No:</b> {{playGround.contactNo}}<br>
+                <b>Approval Status:</b> {{playGround.contactNo}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-6">
+                <p class="lead" style="font-style: inherit">Payment Methods:</p>
+                <img style="width: 50px;height: 50px;" src="assets/images/visa.png" alt="Visa">
+                <img style="width: 50px;height: 50px;" src="assets/images/master.ico" alt="Mastercard">
+                <img style="width: 50px;height: 50px;" src="assets/images/amex.png" alt="American Express">
+                <img style="width: 90px;height: 40px;" src="assets/images/payhere-logo.png" alt="Paypal">
+
+                <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                  We have now entered Sri Lanka's recognized and trusted payment method into settings.lk. You can now do checkouts with us reliably.
+                </p>
+              </div>
+              <!-- /.col -->
+              <div class="col-6">
+                <p class="lead">Payment Details</p>
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th style="width:50%">Subtotal:</th>
+                      <td>$250.30</td>
+                    </tr>
+                    <tr>
+                      <th>Discount: </th>
+                      <td>$10.34</td>
+                    </tr>
+                    <tr>
+                      <th>Total:</th>
+                      <td>$265.24</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+              <div class="col-12">
+                <input *ngIf="step2" type="submit" value="Previous" class="btn btn-primary " style="width: 100px;height: 40px;" (click)="backFinal()">
+                <button type="button" class="btn btn-success float-right" (click)="paynow()"><i class="far fa-credit-card"></i> Submit
+                  Payment
+                </button>
+                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" (click)="save()">
+                  <i class="fa fa-download"></i> Start Match Pool
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- /.invoice -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+</div>
+
+
+

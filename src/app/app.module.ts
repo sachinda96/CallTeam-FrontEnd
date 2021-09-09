@@ -13,6 +13,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { NavDashboardComponent } from './view/nav-dashboard/nav-dashboard.component';
 import {DashboardComponent} from "./view/dashboard/dashboard.component";
 import {DatePipe} from "@angular/common";
+import { NewMatchComponent } from './view/new-match/new-match.component';
+import { MatchpoolComponent } from './view/matchpool/matchpool.component';
+import { JoinpoolComponent } from './view/joinpool/joinpool.component';
+import { NewTournamentComponent } from './view/new-tournament/new-tournament.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import {DatePipe} from "@angular/common";
     HomeComponent,
     NavComponent,
     DashboardComponent,
-    NavDashboardComponent
+    NavDashboardComponent,
+    NewMatchComponent,
+    MatchpoolComponent,
+    JoinpoolComponent,
+    NewTournamentComponent
   ],
   imports: [
     BrowserModule,

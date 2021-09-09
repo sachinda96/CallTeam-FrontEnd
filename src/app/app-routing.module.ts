@@ -5,6 +5,10 @@ import {NavComponent} from "./view/nav/nav.component";
 import {HomeComponent} from "./view/home/home.component";
 import {NavDashboardComponent} from "./view/nav-dashboard/nav-dashboard.component";
 import {DashboardComponent} from "./view/dashboard/dashboard.component";
+import {NewMatchComponent} from "./view/new-match/new-match.component";
+import {MatchpoolComponent} from "./view/matchpool/matchpool.component";
+import {JoinpoolComponent} from "./view/joinpool/joinpool.component";
+import {NewTournamentComponent} from "./view/new-tournament/new-tournament.component";
 
 const routes: Routes = [
   { path: '', component: NavComponent,
@@ -12,6 +16,22 @@ const routes: Routes = [
     {
       path: '',
       component: HomeComponent
+    },
+    {
+      path: 'newmatch',
+      component: NewMatchComponent
+    },
+    {
+      path: 'matchpool',
+      component: MatchpoolComponent
+    },
+    {
+      path: 'joinpool/:id',
+      component: JoinpoolComponent
+    },
+    {
+      path: 'newtournament',
+      component: NewTournamentComponent
     },
     {
       path: 'login',

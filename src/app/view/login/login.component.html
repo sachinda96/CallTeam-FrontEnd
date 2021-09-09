@@ -1,0 +1,115 @@
+<div class="preloader" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<div class="tm-top-a-box tm-full-width tm-box-bg-1 ">
+  <div class="uk-container uk-container-center">
+    <section id="tm-top-a" class="tm-top-a uk-grid uk-grid-collapse" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin="">
+
+      <div class="uk-width-1-1 uk-row-first">
+        <div class="uk-panel">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/head-bg.jpg');">
+            <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
+            <div class="uk-position-cover uk-flex uk-flex-center head-title">
+              <h1>LOGIN/Registration</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="uk-container uk-container-center alt" >
+  <ul class="uk-breadcrumb">
+    <li><a href="index.html">Home</a>
+    </li>
+    <li class="uk-active"><span>Login/Registration</span>
+    </li>
+  </ul>
+</div>
+<div class="container" style="max-width: 30%;" >
+<div class="card">
+  <div class="card-body register-card-body">
+    <p class="login-box-msg" style="font-style: inherit;font-size: 30px">{{regtype}}</p>
+
+    <form  method="post">
+      <div class="input-group mb-3" *ngIf="!islogin">
+        <input type="text" class="form-control" placeholder="Full name" id="fullName"  name="fullName" [(ngModel)]="user.fullName" #email="ngModel">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fa fa-user"></span>
+          </div>
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert">
+
+          <div *ngIf="email.errors?.required">
+            Email is required.
+          </div>
+
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="email" class="form-control" placeholder="Email" id="email"  name="email" [(ngModel)]="user.email">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fa fa-envelope"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3" >
+        <input type="password" class="form-control" placeholder="Password" id="password"  name="password" [(ngModel)]="user.password">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fa fa-lock"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3" *ngIf="!islogin">
+        <input type="password" class="form-control" placeholder="Retype password" id="repassword"  name="repassword" [(ngModel)]="user.repassword">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fa fa-lock"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <div class="icheck-primary">
+            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+            <label for="agreeTerms" *ngIf="!islogin">&nbsp;
+              I agree to the <a href="#">terms</a>
+            </label>
+            <label for="agreeTerms" *ngIf="islogin">&nbsp;
+              Remember me
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-4">
+          <button type="submit" class="btn btn-primary btn-block" *ngIf="!islogin" (click)="register()">Register</button>
+          <button type="button" class="btn btn-primary btn-block" *ngIf="islogin" (click)="login()">Login</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+<!--    <div class="social-auth-links text-center">-->
+<!--      <p>- OR -</p>-->
+<!--      <a href="#" class="btn btn-block btn-primary">-->
+<!--        <i class="fab fa-facebook mr-2"></i>-->
+<!--        Sign up using Facebook-->
+<!--      </a>-->
+<!--      <a href="#" class="btn btn-block btn-danger">-->
+<!--        <i class="fab fa-google-plus mr-2"></i>-->
+<!--        Sign up using Google+-->
+<!--      </a>-->
+<!--    </div>-->
+<br>
+    <a class="text-center" (click)="alreadyLogin()" style="color: #0091ca">{{type}}</a>
+  </div>
+  <!-- /.form-box -->
+</div><!-- /.card -->
+</div>
+<br>
