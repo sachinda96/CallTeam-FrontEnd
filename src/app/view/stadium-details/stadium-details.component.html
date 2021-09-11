@@ -48,22 +48,19 @@
                 {{playGround.name}}
               </div>
               <div class="author">
-                <i class="uk-icon-user"></i>
-                <a class="filter-link" data-original-title="Show only articles of <b>Guest</b>" href="#" rel="nofollow">{{playGround.district}}</a>
+                <i class="uk-icon-location-arrow"></i>
+                <a class="filter-link" data-original-title="Show only articles of <b>Guest</b>" href="#" rel="nofollow">{{playGround.address}}, {{playGround.district}}, {{playGround.city}}</a>
               </div>
               <div class="categories">
-                <i class="uk-icon-list-ul"></i>
-                <a href="#">{{playGround.city}}</a>
+               <i class="fa fa-circle" style="color: red" *ngIf="playGround.status != 'OPEN'"></i> <i class="fa fa-circle" style="color: green" *ngIf="playGround.status == 'OPEN'"></i>{{playGround.status}}
+                <a href="#"></a>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="article-single-text">
-                  <p>{{playGround.description}}</p>
-                  <blockquote><span>Ut scelerisque odio et cursus hendrerit. Nullam volutpat ligula elit, sit amet viverra est consequat non. Suspendisse nisl magna, suscipit sed volutpat nec, commodo nec nunc. Nunc posuere commodo ipsum, sit amet pretium felis eleifend vitae. Cras eget aliquam augue.</span></blockquote>
-                  <p>
-                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc sit amet consequat magna. Donec congue sem felis, vel bibendum risus rutrum vel. Vivamus sed turpis nec nisl volutpat euismod eu in nisi. In sapien tortor, efficitur non ullamcorper in, fermentum malesuada quam. Fusce sed elit pharetra, semper nibh id, rutrum est. Phasellus id mollis elit. Nullam iaculis consequat est sed dignissim. Morbi rhoncus aliquet justo, et feugiat augue feugiat ut. Integer odio est, lobortis eu dolor faucibus, pretium imperdiet sapien. Nunc in ligula metus. Quisque mi lacus, ullamcorper sed bibendum vel, vehicula a tortor.
-                  </p>
+                  <p style="color: black">{{playGround.description}}</p>
+
 
                 </div>
               </div>
@@ -77,60 +74,33 @@
 
             <div class="row">
               <div class="col-lg-12">
+                <h1>
+                  Sports and Prices
+                </h1>
                 <div class="article-single-text">
                   <table>
                     <tbody>
                     <tr>
-                      <th>column 1</th>
-                      <th>column 2</th>
-                      <th>column 3</th>
-                      <th>column 4</th>
+                      <th>Sport</th>
+                      <th style="color: black">Number of Teams</th>
+                      <th>Price Per Hour</th>
                     </tr>
-                    <tr>
-                      <td>Suspendisse</td>
-                      <td>Praesent</td>
-                      <td>Aliquam</td>
-                      <td>Maecenas</td>
-                    </tr>
-                    <tr>
-                      <td>phasellus</td>
-                      <td>vivamus</td>
-                      <td>torquent</td>
-                      <td>consequat</td>
-                    </tr>
-                    <tr>
-                      <td>fermentum</td>
-                      <td>vestibulum</td>
-                      <td>fermentum</td>
-                      <td>pellentesque</td>
-                    </tr>
-                    <tr>
-                      <td>Suspendisse</td>
-                      <td>Praesent</td>
-                      <td>Aliquam</td>
-                      <td>Maecenas</td>
-                    </tr>
-                    <tr>
-                      <td>phasellus</td>
-                      <td>vivamus</td>
-                      <td>torquent</td>
-                      <td>consequat</td>
+                    <tr *ngFor="let data of playGround.playGroundSportDtoList">
+                      <td style="color: black">{{data.sport}}</td>
+                      <td style="color: black">{{data.noOfTeams}}</td>
+                      <td style="color: black">Rs.{{data.pricePerHour}}</td>
                     </tr>
                     </tbody>
                   </table>
-                  <p>
-                    Integer bibendum dolor purus, ut ultricies nisi porta pellentesque. Integer vitae lobortis nisi. Etiam fringilla, quam sit amet consequat ultricies, orci massa vehicula ligula, sit amet fringilla libero lorem quis sem. Vivamus sit amet erat tempor purus lobortis euismod sodales ac tellus. Phasellus non aliquet libero, vitae dignissim lorem. Aenean at eleifend libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                  </p>
-
                 </div>
               </div>
             </div>
 
-            <div class="share-wrap">
-              <div class="share-title">share</div>
-              <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script>
-              <div class="yashare-auto-init" data-yasharel10n="en" data-yasharetype="none" data-yasharequickservices="facebook,twitter,gplus"><span class="b-share"><a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link b-share-btn__facebook" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="facebook"><span class="b-share-icon b-share-icon_facebook"></span></a><a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link b-share-btn__twitter" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="twitter"><span class="b-share-icon b-share-icon_twitter"></span></a><a rel="nofollow" target="_blank" title="Google Plus" class="b-share__handle b-share__link b-share-btn__gplus" href="https://share.yandex.net/go.xml?service=gplus&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="gplus"><span class="b-share-icon b-share-icon_gplus"></span></a></span></div>
-            </div>
+<!--            <div class="share-wrap">-->
+<!--              <div class="share-title">share</div>-->
+<!--              <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script>-->
+<!--              <div class="yashare-auto-init" data-yasharel10n="en" data-yasharetype="none" data-yasharequickservices="facebook,twitter,gplus"><span class="b-share"><a rel="nofollow" target="_blank" title="Facebook" class="b-share__handle b-share__link b-share-btn__facebook" href="https://share.yandex.net/go.xml?service=facebook&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="facebook"><span class="b-share-icon b-share-icon_facebook"></span></a><a rel="nofollow" target="_blank" title="Twitter" class="b-share__handle b-share__link b-share-btn__twitter" href="https://share.yandex.net/go.xml?service=twitter&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="twitter"><span class="b-share-icon b-share-icon_twitter"></span></a><a rel="nofollow" target="_blank" title="Google Plus" class="b-share__handle b-share__link b-share-btn__gplus" href="https://share.yandex.net/go.xml?service=gplus&amp;url=http%3A%2F%2Fsport.statiolh.bget.ru%2Findex.php%2Fnews%2Fitem%2F2-life%2F30-bla-bla-bla&amp;title=Your%20Joomla!%20Site%20-%20Suspendisse%20purus%20enim%2C%20dictum%20sed%20lorem%20ac%2C%20sodales%20maximus%20est%20-%20Life%20-%20News" data-service="gplus"><span class="b-share-icon b-share-icon_gplus"></span></a></span></div>-->
+<!--            </div>-->
           </article>
 <br>
         </div>

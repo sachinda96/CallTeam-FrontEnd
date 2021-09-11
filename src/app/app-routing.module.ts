@@ -13,6 +13,7 @@ import {ViewTournamentsComponent} from "./view/view-tournaments/view-tournaments
 import {JoinTournamentsComponent} from "./view/join-tournaments/join-tournaments.component";
 import {ViewStadiumComponent} from "./view/view-stadium/view-stadium.component";
 import {StadiumDetailsComponent} from "./view/stadium-details/stadium-details.component";
+import {PlayersComponent} from "./view/players/players.component";
 
 const routes: Routes = [
   { path: '', component: NavComponent,
@@ -52,6 +53,10 @@ const routes: Routes = [
     {
       path: 'stadiumdetails/:id',
       component: StadiumDetailsComponent
+    },
+    {
+      path: 'players',
+      component: PlayersComponent
     },
     {
       path: 'login',
