@@ -14,6 +14,7 @@ import {JoinTournamentsComponent} from "./view/join-tournaments/join-tournaments
 import {ViewStadiumComponent} from "./view/view-stadium/view-stadium.component";
 import {StadiumDetailsComponent} from "./view/stadium-details/stadium-details.component";
 import {PlayersComponent} from "./view/players/players.component";
+import {PlayerComponent} from "./view/player/player.component";
 
 const routes: Routes = [
   { path: '', component: NavComponent,
@@ -57,6 +58,10 @@ const routes: Routes = [
     {
       path: 'players',
       component: PlayersComponent
+    },
+    {
+      path: 'player/:id',
+      component: PlayerComponent
     },
     {
       path: 'login',

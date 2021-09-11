@@ -23,6 +23,7 @@ import { ViewStadiumComponent } from './view/view-stadium/view-stadium.component
 import { StadiumDetailsComponent } from './view/stadium-details/stadium-details.component';
 import {AgmCoreModule} from "@agm/core";
 import { PlayersComponent } from './view/players/players.component';
+import { PlayerComponent } from './view/player/player.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PlayersComponent } from './view/players/players.component';
     JoinTournamentsComponent,
     ViewStadiumComponent,
     StadiumDetailsComponent,
-    PlayersComponent
+    PlayersComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
