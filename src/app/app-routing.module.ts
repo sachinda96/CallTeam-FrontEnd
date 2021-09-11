@@ -9,6 +9,10 @@ import {NewMatchComponent} from "./view/new-match/new-match.component";
 import {MatchpoolComponent} from "./view/matchpool/matchpool.component";
 import {JoinpoolComponent} from "./view/joinpool/joinpool.component";
 import {NewTournamentComponent} from "./view/new-tournament/new-tournament.component";
+import {ViewTournamentsComponent} from "./view/view-tournaments/view-tournaments.component";
+import {JoinTournamentsComponent} from "./view/join-tournaments/join-tournaments.component";
+import {ViewStadiumComponent} from "./view/view-stadium/view-stadium.component";
+import {StadiumDetailsComponent} from "./view/stadium-details/stadium-details.component";
 
 const routes: Routes = [
   { path: '', component: NavComponent,
@@ -32,6 +36,22 @@ const routes: Routes = [
     {
       path: 'newtournament',
       component: NewTournamentComponent
+    },
+    {
+      path: 'viewtournament',
+      component: ViewTournamentsComponent
+    },
+    {
+      path: 'jointournament/:id',
+      component: JoinTournamentsComponent
+    },
+    {
+      path: 'stadium',
+      component: ViewStadiumComponent
+    },
+    {
+      path: 'stadiumdetails/:id',
+      component: StadiumDetailsComponent
     },
     {
       path: 'login',

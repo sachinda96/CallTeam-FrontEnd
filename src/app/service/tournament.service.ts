@@ -16,6 +16,10 @@ export class TournamentService {
   }
 
   getTournamentsByUserCity(id:any){
-    return this.http.get<any>(MAIN+"/tournamentsByUserCity/"+id);
+    return this.http.get<any>(MAIN+"/tournament/tournamentsByUserCity/"+id);
+  }
+
+  getTournament(id:any){
+    return this.http.get<any>(MAIN+"/tournament/getTournament/"+id);
   }
 }

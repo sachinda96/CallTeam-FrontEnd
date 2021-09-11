@@ -18,6 +18,10 @@ import { MatchpoolComponent } from './view/matchpool/matchpool.component';
 import { JoinpoolComponent } from './view/joinpool/joinpool.component';
 import { NewTournamentComponent } from './view/new-tournament/new-tournament.component';
 import { ViewTournamentsComponent } from './view/view-tournaments/view-tournaments.component';
+import { JoinTournamentsComponent } from './view/join-tournaments/join-tournaments.component';
+import { ViewStadiumComponent } from './view/view-stadium/view-stadium.component';
+import { StadiumDetailsComponent } from './view/stadium-details/stadium-details.component';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { ViewTournamentsComponent } from './view/view-tournaments/view-tournamen
     MatchpoolComponent,
     JoinpoolComponent,
     NewTournamentComponent,
-    ViewTournamentsComponent
+    ViewTournamentsComponent,
+    JoinTournamentsComponent,
+    ViewStadiumComponent,
+    StadiumDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,10 @@ import { ViewTournamentsComponent } from './view/view-tournaments/view-tournamen
     CarouselModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA42hgMd3vQDY8HG1Bx1xMWqy826yzpUO4'
+    })
   ],
   providers: [
     DatePipe

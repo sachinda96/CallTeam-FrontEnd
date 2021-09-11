@@ -18,6 +18,16 @@ export class PlayGroundService {
     return this.http.get<any>(MAIN+"/playground/getAllByCity/"+city)
   }
 
+  pagesCount():Observable<any>{
+    return this.http.get<any>(MAIN+"/playground/pageCount")
+  }
 
+  getAllByPage(index:any):Observable<any>{
+    return this.http.get<any>(MAIN+"/playground/"+index)
+  }
+
+  getById(id:string):Observable<any>{
+    return this.http.get<any>(MAIN+"/playground/getById/"+id)
+  }
 
 }

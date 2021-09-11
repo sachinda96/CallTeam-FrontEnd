@@ -2,6 +2,7 @@ export class PlayGround {
 
   id : string = "";
   name : string = "";
+  description : string = "";
   address : string = "";
   city : string = "";
   district : string = "";

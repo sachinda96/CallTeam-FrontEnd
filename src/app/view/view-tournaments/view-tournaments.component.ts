@@ -5,6 +5,7 @@ import {SportPoolService} from "../../service/sport-pool.service";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {TournamentService} from "../../service/tournament.service";
+import {TournamentPool} from "../../model/tournament-pool";
 
 @Component({
   selector: 'app-view-tournaments',
@@ -14,7 +15,7 @@ import {TournamentService} from "../../service/tournament.service";
 export class ViewTournamentsComponent implements OnInit {
 
   id: any;
-  progressPoolList: Array<ProgressPoolMatch> = new Array<ProgressPoolMatch>();
+  tournamentPool: Array<TournamentPool> = new Array<TournamentPool>();
   loading: boolean = false;
   response: Response = new Response();
 
@@ -30,7 +31,7 @@ export class ViewTournamentsComponent implements OnInit {
     this.tournamentService.getTournamentsByUserCity(this.id).subscribe(
       res=>{
         console.log(res)
-        this.progressPoolList = res;
+        this.tournamentPool = res;
       },error => {
         this.loading = false;
         this.response = error.error;
@@ -45,12 +46,12 @@ export class ViewTournamentsComponent implements OnInit {
     );
   }
 
-  routeJoin(pool:ProgressPoolMatch) {
-    this.router.navigate(['joinpool',pool.id])
+  routeJoin(tournamentPool:TournamentPool) {
+    this.router.navigate(['jointournament',tournamentPool.id])
   }
 
   routeNewMatch() {
-    this.router.navigate(['newmatch'])
+    this.router.navigate(['newtournament'])
   }
 
 }

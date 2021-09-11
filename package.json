@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "~12.0.4",
     "@angular/common": "~12.0.4",
     "@angular/compiler": "~12.0.4",
@@ -19,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~12.0.4",
     "@angular/router": "~12.0.4",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@types/googlemaps": "^3.39.13",
     "admin-lte": "^3.1.0",
     "font-awesome": "^4.7.0",
     "ngx-owl-carousel-o": "^6.0.0",
