@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import {DatePipe} from "@angular/common";
 import {SportService} from "../../service/sport.service";
 import {Sport} from "../../model/sport";
+import {interval} from "rxjs";
+import {SportPoolService} from "../../service/sport-pool.service";
+import {ProgressPoolMatch} from "../../model/progress-pool-match";
 
 @Component({
   selector: 'app-nav-dashboard',
@@ -36,12 +39,16 @@ export class NavDashboardComponent implements OnInit {
   sportList: Array<Sport> = new Array<Sport>();
   tempSportList: Array<Sport> = new Array<Sport>();
   sport:any;
+  id: any;
+  progressPoolList: Array<ProgressPoolMatch> = new Array<ProgressPoolMatch>();
 
-  constructor(private userService:UserService,private datePipe : DatePipe,private sportService:SportService) { }
+  constructor(private userService:UserService,private datePipe : DatePipe,private sportService:SportService,private sportPoolService : SportPoolService) { }
 
   ngOnInit(): void {
     this.getProfileData();
     this.getAllSports();
+    this.getSportPool();
+    this.tempDate = this.datePipe.transform(new Date(),'yyyy-MM-dd');
   }
 
   logOut() {
@@ -54,7 +61,7 @@ export class NavDashboardComponent implements OnInit {
     var reader = new FileReader();
 
     reader.onload = (event: any) => {
-      this.image = event.target.result;
+      this.userDetails.imagePath = event.target.result;
 
     };
 
@@ -165,6 +172,29 @@ export class NavDashboardComponent implements OnInit {
         })
       }
     );
+
+  }
+
+  getSportPool() {
+    this.id = sessionStorage.getItem("user");
+    this.sportPoolService.getAllSportPoolByUser(this.id).subscribe(
+      res=>{
+        this.progressPoolList = res;
+      },error => {
+        this.loading = false;
+        this.response = error.error;
+        // Swal.fire({
+        //   title: this.response.message,
+        //   icon: 'error',
+        //   showConfirmButton: true,
+        //   allowOutsideClick: false,
+        //   allowEscapeKey: false
+        // })
+      }
+    );
+  }
+
+  cancel(pool: any) {
 
   }
 }

@@ -1,0 +1,650 @@
+<div class="preloader" *ngIf="loading">
+  <div class="loader"></div>
+</div>
+
+<div class="tm-top-a-box tm-full-width tm-box-bg-1 ">
+  <div class="uk-container uk-container-center">
+    <section id="tm-top-a" class="tm-top-a uk-grid uk-grid-collapse" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin="">
+
+      <div class="uk-width-1-1 uk-row-first">
+        <div class="uk-panel">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/dash2.jpg');">
+            <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
+            <div class="uk-position-cover uk-flex uk-flex-center head-title">
+              <h1 style="color: white">Admin Dashboard</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<br>
+<br>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Sport</a></li>
+              <li class="nav-item"><a class="nav-link" href="#stadium" data-toggle="tab">Stadium</a></li>
+              <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Category</a></li>
+            </ul>
+          </div><!-- /.card-header -->
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane" id="activity">
+
+                <div class="row">
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                      <div class="inner">
+                        <h3>150</h3>
+
+                        <p>New Orders</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-bag"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                      <div class="inner">
+                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                        <p>Bounce Rate</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                      <div class="inner">
+                        <h3>44</h3>
+
+                        <p>User Registrations</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                      <div class="inner">
+                        <h3>65</h3>
+
+                        <p>Unique Visitors</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+
+
+
+              </div>
+
+              <div class="tab-pane" id="timeline">
+                <div >
+                  <div *ngIf="isView" class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3>Sports List</h3>
+
+                          <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                              <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                  <i class="fas fa-search" ></i>
+                                </button>
+                                &nbsp;&nbsp;
+                                <i class="fa fa-plus-circle fa-2x" style="color: blue" (click)="isView = false"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 500px;">
+                          <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                            <tr>
+                              <th></th>
+                              <th>Name</th>
+                              <th>No of players</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let sport of sportList">
+                              <td ><img style="width: 60px;height: 60px;" src="{{sport.imagePath}}"></td>
+                              <td>{{sport.name}}</td>
+                              <td>{{sport.numberOfPlayers}}</td>
+                              <td><i class="fas fa-edit fa-2x" style="color: orange" (click)="editSport(sport)"></i></td>
+                              <td><i class="fas fa-trash-alt fa-2x" style="color: red" (click)="deleteSport(sport)"></i></td>
+                            </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
+                    </div>
+                  </div>
+                  <div *ngIf="!isView">
+                    <div class="col-12">
+                    <div class="card-header">
+                      <h2>Sport Details</h2>
+
+                    </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <div class="text-center">
+                              <img src="{{imagePath}}" class="avatar img-thumbnail" alt="avatar" style="max-height: 150px;max-width: 150px">
+                              <h6>Upload a different photo...</h6>
+                              <input type="file" class="text-center center-block file-upload" (change)="fileChange($event)" accept=".png, .jpg, .jpeg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="col-6">
+
+                      <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-control" (change)="setCategory($event)" [value]="categoryId">
+                          <option>--Select Category--</option>
+                          <option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="sport.name">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="numberOfPlayers">No of players</label>
+                        <input type="number" class="form-control" id="numberOfPlayers" name="numberOfPlayers" placeholder="No of player" [(ngModel)]="sport.numberOfPlayers">
+                      </div>
+                    </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" placeholder="description" [(ngModel)]="sport.description"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="ageMin">Minimum Age</label>
+                          <input type="number" class="form-control" id="ageMin" name="ageMin" placeholder="Minimum Age" [(ngModel)]="sport.ageMin">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="ageMax">Maximum Age</label>
+                          <input type="number" class="form-control" id="ageMax"  name="ageMax" placeholder="Maximum Age" [(ngModel)]="sport.ageMax">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-default" style="background-color: red;color: white" (click)="isView = true">Cancel</button>
+                      <button type="submit" class="btn btn-info float-right" (click)="save()">Save</button>
+
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+
+              <div class="tab-pane" id="stadium">
+                <div >
+                  <div *ngIf="isStadiumView" class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3>Stadium List</h3>
+
+                          <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                              <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                  <i class="fas fa-search" ></i>
+                                </button>
+                                &nbsp;&nbsp;
+                                <i class="fa fa-plus-circle fa-2x" style="color: blue" (click)="isStadiumView = false"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 500px;">
+                          <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                            <tr>
+                              <th></th>
+                              <th>Name</th>
+                              <th>Address</th>
+                              <th>District</th>
+                              <th>City</th>
+                              <th></th>
+                              <th></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let playground of playGroundList">
+                              <td ><img style="width: 60px;height: 60px;" src="{{playground.imagePath}}"></td>
+                              <td>{{playground.name}}</td>
+                              <td>{{playground.address}}</td>
+                              <td>{{playground.district}}</td>
+                              <td>{{playground.city}}</td>
+                              <td><i class="fas fa-edit fa-2x" style="color: orange" (click)="editPlayGround(playground)"></i></td>
+                              <td><i class="fas fa-trash-alt fa-2x" style="color: red" (click)="deletePlayGround(playground)"></i></td>
+                            </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
+                    </div>
+                  </div>
+                  <div *ngIf="!isStadiumView">
+                    <div class="col-12">
+                      <div class="card-header">
+                        <h3>Stadium Details</h3>
+
+                      </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <div class="text-center">
+                              <img src="{{playgroundImagePath}}" class="avatar img-thumbnail" alt="avatar" style="max-height: 150px;max-width: 150px">
+                              <h6>Upload a different photo...</h6>
+                              <input type="file" class="text-center center-block file-upload" (change)="fileChangePlayGround($event)" accept=".png, .jpg, .jpeg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6">
+
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="playGround.name">
+                        </div>
+                        <div class="form-group">
+                          <label for="name">Address</label>
+                          <input type="text" class="form-control" id="address" name="address" placeholder="Address" [(ngModel)]="playGround.address">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="name">District</label>
+                          <input type="text" class="form-control" id="district" name="district" placeholder="District" [(ngModel)]="playGround.district">
+                        </div>
+                        <div class="form-group">
+                          <label for="city">City</label>
+                          <input type="text" class="form-control" id="city" name="city" placeholder="City" [(ngModel)]="playGround.city">
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="descriptions" name="description" rows="4" placeholder="description" [(ngModel)]="playGround.description"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="contactNo">Contact No</label>
+                          <input type="text" class="form-control" id="contactNo" name="contactNo" placeholder="Contact No" [(ngModel)]="playGround.contactNo">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="openTime">Open Time</label>
+                          <input type="time" class="form-control" id="openTime" name="openTime" placeholder="Open Time" [(ngModel)]="playGround.openTime">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="closeTime">Close Time</label>
+                          <input type="time" class="form-control" id="closeTime" name="closeTime" placeholder="Close Time" [(ngModel)]="playGround.closeTime">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="ageMin">Longitude</label>
+                          <input type="number" class="form-control" id="longitude" name="longitude" placeholder="Longitude" [(ngModel)]="playGround.longitude">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="ageMax">Latitude</label>
+                          <input type="number" class="form-control" id="latitude"  name="latitude" placeholder="Latitude" [(ngModel)]="playGround.latitude">
+                        </div>
+                        <button type="submit" class="btn btn-warning float-right" (click)="generate()">Generate</button>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-12">
+                      <div class="card-header">
+                        <h3>Sports</h3>
+
+                      </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-3">
+                        <label>Sport</label>
+                        <select class="form-control" (change)="setSport($event)" >
+                          <option>--Select Sport--</option>
+                          <option *ngFor="let sport of sportList" value="{{sport.id}}">{{sport.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="ageMax">Maximum Teams</label>
+                          <input type="number" class="form-control" id="not"  name="not" placeholder="Price Per Hour" [(ngModel)]="not">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="ageMax">Price Per Hour</label>
+                          <input type="number" class="form-control" id="priceperhour"  name="priceperhour" placeholder="Price Per Hour" [(ngModel)]="priceperhour">
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <button style="margin-top: 28px" type="submit" class="btn btn-success" (click)="addSportPlayground()">Add</button>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="article-single-text">
+                          <table>
+                            <tbody>
+                            <tr>
+                              <th>Sport</th>
+                              <th style="color: black">Number of Teams</th>
+                              <th>Price Per Hour</th>
+                              <th></th>
+                            </tr>
+                            <tr *ngFor="let data of playGround.playGroundSportDtoList">
+                              <td style="color: black">{{data.sport}}</td>
+                              <td style="color: black">{{data.noOfTeams}}</td>
+                              <td style="color: black">Rs.{{data.pricePerHour}}</td>
+                              <td><i class="fas fa-trash-alt fa-1x" style="color: red" (click)="deletePlayGroundSport(data)"></i></td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+<br><br>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-danger"  (click)="isView = true">Cancel</button>
+                      <button type="submit" class="btn btn-success float-right" (click)="savePlaygrounds()">Save</button>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+<!--              <div class="tab-pane" id="settings">-->
+<!--                <form class="form-horizontal">-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="form-group">-->
+<!--                          <div class="text-center">-->
+<!--                            <img  class="avatar img-circle img-thumbnail" alt="avatar" style="width: 40%">-->
+<!--                            <h6>Upload a different photo...</h6>-->
+<!--                            <input type="file" class="text-center center-block file-upload"  accept=".png, .jpg, .jpeg">-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label>Full Name</label>-->
+<!--                        <input-->
+<!--                          type="text"-->
+<!--                          class="form-control"-->
+<!--                          id="fullName"-->
+<!--                          name="fullName"-->
+<!--                          placeholder="Item Name"-->
+
+<!--                        />-->
+<!--                        <br>-->
+<!--                        <label>Email</label>-->
+<!--                        <input-->
+<!--                          type="text"-->
+<!--                          class="form-control"-->
+<!--                          id="email"-->
+<!--                          name="email"-->
+<!--                          placeholder="Email"-->
+
+<!--                        />-->
+
+<!--                        <br>-->
+<!--                        <label>Contact Number</label>-->
+<!--                        <input-->
+<!--                          type="text"-->
+<!--                          class="form-control"-->
+<!--                          id="contactNo"-->
+<!--                          name="contactNo"-->
+<!--                          placeholder="Contact Number"-->
+
+<!--                        />-->
+
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <label>Birth Day</label>-->
+<!--                        <div class="input-group date" id="reservationdate" data-target-input="nearest">-->
+<!--                          <input type="date" class="form-control datetimepicker-input" data-target="#reservationdate" name="birthDay" id="birthDay"  />-->
+
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+
+
+
+<!--                  </div>-->
+
+<!--                  <div class="row">-->
+
+<!--                    <div class="col-lg-12">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <div class="card card-default">-->
+<!--                            <div class="card-header">-->
+<!--                              <h3 class="card-title">Sports</h3>-->
+
+<!--                            </div>-->
+<!--                            &lt;!&ndash; /.card-header &ndash;&gt;-->
+<!--                            <div class="card-body">-->
+<!--                              <div class="row">-->
+<!--                                <div class="col-6">-->
+<!--                                  <div class="form-group">-->
+<!--                                    <select class="duallistbox" multiple="multiple" style="width: 100%;height: 150px" >-->
+<!--                                      <option> </option>-->
+<!--                                    </select>-->
+<!--                                  </div>-->
+<!--                                  &lt;!&ndash; /.form-group &ndash;&gt;-->
+<!--                                </div>-->
+<!--                                <div class="col-6">-->
+<!--                                  <div class="form-group">-->
+<!--                                    <select class="duallistbox" multiple="multiple" style="width: 100%;height: 150px">-->
+<!--                                      <option  ></option>-->
+<!--                                    </select>-->
+<!--                                  </div>-->
+<!--                                  &lt;!&ndash; /.form-group &ndash;&gt;-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; /.col &ndash;&gt;-->
+<!--                              </div>-->
+
+<!--                              &lt;!&ndash; /.row &ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; /.card-body &ndash;&gt;-->
+<!--                          </div>-->
+
+<!--                          &lt;!&ndash;                          <input&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            type="text"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            class="form-control"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            id="sport"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            name="name"&ndash;&gt;-->
+<!--                          &lt;!&ndash;                            placeholder="Ex: Cricket,Football"&ndash;&gt;-->
+
+<!--                          &lt;!&ndash;                          />&ndash;&gt;-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <label>Address</label>-->
+<!--                          <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            id="address"-->
+<!--                            name="address"-->
+<!--                            placeholder="Address"-->
+<!--                          />-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <label>District</label>-->
+<!--                          <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            id="deistic"-->
+<!--                            name="deistic"-->
+<!--                            placeholder="District"-->
+
+<!--                          />-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-6">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <label>City</label>-->
+<!--                          <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            id="City"-->
+<!--                            name="city"-->
+<!--                            placeholder="City"-->
+<!--                          />-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <label>Skills</label>-->
+<!--                          <textarea class="form-control" rows="4" placeholder="Skills ..." id="skills" name="skills" ></textarea>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                      <div class="form-group">-->
+<!--                        <div class="select2-purple">-->
+<!--                          <label>About me</label>-->
+<!--                          <textarea class="form-control" rows="4" placeholder="About me" id="aboutme" name="aboutme"></textarea>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="form-group row" style="float: right">-->
+<!--                    <div class="offset-sm-2 col-sm-10">-->
+<!--                      <button type="button" class="btn btn-danger" >Submit</button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+

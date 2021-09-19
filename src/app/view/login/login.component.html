@@ -8,8 +8,8 @@
 
       <div class="uk-width-1-1 uk-row-first">
         <div class="uk-panel">
-          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/head-bg.jpg');">
-            <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/wnH4M3.jpg');">
+            <img class="uk-invisible" src="../../../assets/images/logback.jpg" alt="" height="290" width="1920">
             <div class="uk-position-cover uk-flex uk-flex-center head-title">
               <h1>LOGIN/Registration</h1>
             </div>
@@ -36,6 +36,7 @@
     <form  method="post">
       <div class="input-group mb-3" *ngIf="!islogin">
         <input type="text" class="form-control" placeholder="Full name" id="fullName"  name="fullName" [(ngModel)]="user.fullName" #email="ngModel">
+        <label style="color: red" *ngIf="fullNameValidate"> *Full name is required</label>
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fa fa-user"></span>
@@ -77,13 +78,13 @@
       <div class="row">
         <div class="col-8">
           <div class="icheck-primary">
-            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-            <label for="agreeTerms" *ngIf="!islogin">&nbsp;
-              I agree to the <a href="#">terms</a>
-            </label>
-            <label for="agreeTerms" *ngIf="islogin">&nbsp;
-              Remember me
-            </label>
+<!--            <input type="checkbox" id="agreeTerms" name="terms" value="agree">-->
+<!--            <label for="agreeTerms" *ngIf="!islogin">&nbsp;-->
+<!--              I agree to the <a href="#">terms</a>-->
+<!--            </label>-->
+<!--            <label  *ngIf="islogin">&nbsp;-->
+<!--              Remember me-->
+<!--            </label>-->
           </div>
         </div>
         <!-- /.col -->

@@ -10,6 +10,18 @@ export class PlayGroundService {
 
   constructor(private http:HttpClient) { }
 
+  save(formData:FormData):Observable<any>{
+    return this.http.post<any>(MAIN+"/playground/save",formData)
+  }
+
+  update(formData:FormData):Observable<any>{
+    return this.http.post<any>(MAIN+"/playground/update",formData)
+  }
+
+  delete(id:string):Observable<any>{
+    return this.http.delete<any>(MAIN+"/playground/delete/"+id)
+  }
+
   getAll():Observable<any>{
     return this.http.get<any>(MAIN+"/playground")
   }
@@ -28,6 +40,10 @@ export class PlayGroundService {
 
   getById(id:string):Observable<any>{
     return this.http.get<any>(MAIN+"/playground/getById/"+id)
+  }
+
+  getAllBySportId(id:string){
+    return this.http.get<any>(MAIN+"/playground/getAllBySportId/"+id)
   }
 
 }

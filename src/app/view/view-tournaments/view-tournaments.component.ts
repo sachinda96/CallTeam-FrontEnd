@@ -6,6 +6,10 @@ import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {TournamentService} from "../../service/tournament.service";
 import {TournamentPool} from "../../model/tournament-pool";
+import {SportService} from "../../service/sport.service";
+import {PlayGroundService} from "../../service/play-ground.service";
+import {Sport} from "../../model/sport";
+import {PlayGround} from "../../model/play-ground";
 
 @Component({
   selector: 'app-view-tournaments',
@@ -18,11 +22,15 @@ export class ViewTournamentsComponent implements OnInit {
   tournamentPool: Array<TournamentPool> = new Array<TournamentPool>();
   loading: boolean = false;
   response: Response = new Response();
+  sportList:Array<Sport> = new Array<Sport>();
+  playGroundList:Array<PlayGround> = new Array<PlayGround>();
 
-  constructor(private tournamentService:TournamentService,private router:Router) { }
+  constructor(private tournamentService:TournamentService,private router:Router,private sportService:SportService,private playGroundService:PlayGroundService) { }
 
   ngOnInit(): void {
     this.getTournamentsByUserCity();
+    this.getAllSport();
+    this.getAllPlayGround();
   }
 
 
@@ -52,6 +60,23 @@ export class ViewTournamentsComponent implements OnInit {
 
   routeNewMatch() {
     this.router.navigate(['newtournament'])
+  }
+
+
+  getAllSport() {
+    this.sportService.getAll().subscribe(
+      res=>{
+        this.sportList = res;
+      }
+    );
+  }
+
+  getAllPlayGround() {
+    this.playGroundService.getAll().subscribe(
+      res=>{
+        this.playGroundList = res;
+      }
+    );
   }
 
 }

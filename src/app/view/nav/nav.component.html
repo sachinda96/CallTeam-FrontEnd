@@ -50,21 +50,21 @@
               </div>
             </div>
           </li>
-          <li data-uk-dropdown="{'preventflip':'y'}" aria-haspopup="true" aria-expanded="false"><a href="about.html">About</a></li>
-          <li class="uk-parent" data-uk-dropdown="{'preventflip':'y'}" aria-haspopup="true" aria-expanded="false"><a href="#">Pages</a>
-            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-width-1">
-              <div class="uk-grid uk-dropdown-grid">
-                <div class="uk-width-1-1">
-                  <ul class="uk-nav uk-nav-navbar">
-                    <li><a href="players.html">Players</a>
-                    </li>
-                    <li><a href="gallery.html">Gallery</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
+<!--          <li data-uk-dropdown="{'preventflip':'y'}" aria-haspopup="true" aria-expanded="false"><a href="about.html">About</a></li>-->
+<!--          <li class="uk-parent" data-uk-dropdown="{'preventflip':'y'}" aria-haspopup="true" aria-expanded="false"><a href="#">Pages</a>-->
+<!--            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-width-1">-->
+<!--              <div class="uk-grid uk-dropdown-grid">-->
+<!--                <div class="uk-width-1-1">-->
+<!--                  <ul class="uk-nav uk-nav-navbar">-->
+<!--                    <li><a href="players.html">Players</a>-->
+<!--                    </li>-->
+<!--                    <li><a href="gallery.html">Gallery</a>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </li>-->
           <li class="uk-parent" data-uk-dropdown="{'preventflip':'y'}" aria-haspopup="true" aria-expanded="false"><a href="match-list.html" [routerLink]="['matchpool']">Match</a>
 
           </li>
@@ -74,11 +74,11 @@
           </li>
           <li><a [routerLink]="['players']">Players</a>
           </li>
-          <li><a [routerLink]="['login']">Login/Registration</a>
+          <li><a [routerLink]="['login']" *ngIf="isLogin == false">Login/Registration</a>
           </li>
-          <li><a [routerLink]="['dashboard']" >Dashboard</a>
+          <li><a [routerLink]="['dashboard']" *ngIf="isLogin == true">Dashboard</a>
           </li>
-          <li><a (click)="logout()">logout</a>
+          <li><a (click)="logout()" *ngIf="isLogin == true">logout</a>
           </li>
         </ul>
         <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a>
@@ -112,7 +112,6 @@
               <div class="clear"></div>
 
               <p class="footer-about-text">
-                Cras convallis feugiat felis eget venenatis. Sed leo tellus, luctus eget ante quis, rutrum dignissim enim. Morbi efficitur tellus non mauris tincidunt feugiat. Vestibulum quis nunc in nibh eleifend convallis. Vestibulum nec viverra dui. Suspendisse vel neque eros. Donec tincidunt tempus massa sed vehicula. Integer ullamcorper at elit eu commodo.
               </p>
             </div>
           </div>
@@ -337,8 +336,8 @@
                 <div class="acymailing_fulldiv" id="acymailing_fulldiv_formAcymailing54111">
                   <form id="formAcymailing54111" method="post" name="formAcymailing54111">
                     <div class="acymailing_module_form">
-                      <div class="mail-title">Newsletters</div>
-                      <div class="acymailing_introtext">Suspendisse sodales, magna at dignissim cursus, velit ex porttitor eros.</div>
+                      <div class="mail-title">Subscribe us</div>
+                      <div class="acymailing_introtext"></div>
                       <div class="clear"></div>
                       <div class="space"></div>
                       <table class="acymailing_form">
@@ -394,7 +393,7 @@
                     </li>
                   </ul>
                 </div>
-                <div class="copyrights">Copyright © 2015 <a href="/">Sportak Team</a>. All Rights Reserved.</div>
+                <div class="copyrights">Copyright © 20121 <a href="/">Call Team</a>. All Rights Reserved.</div>
                 <div class="clear"></div>
               </div>
             </div>

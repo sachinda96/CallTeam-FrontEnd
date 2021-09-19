@@ -24,6 +24,8 @@ import { StadiumDetailsComponent } from './view/stadium-details/stadium-details.
 import {AgmCoreModule} from "@agm/core";
 import { PlayersComponent } from './view/players/players.component';
 import { PlayerComponent } from './view/player/player.component';
+import { AdminDashboardComponent } from './view/admin-dashboard/admin-dashboard.component';
+import {AgmDirectionModule} from "agm-direction";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { PlayerComponent } from './view/player/player.component';
     ViewStadiumComponent,
     StadiumDetailsComponent,
     PlayersComponent,
-    PlayerComponent
+    PlayerComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +53,12 @@ import { PlayerComponent } from './view/player/player.component';
     CarouselModule,
     FormsModule,
     HttpClientModule,
+    AgmDirectionModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA42hgMd3vQDY8HG1Bx1xMWqy826yzpUO4'
-    })
+      apiKey: 'AIzaSyDFUQeOn1aJvMN_uWQ3Jeqrpk3jg4Xeztg'
+    }),
+
   ],
   providers: [
     DatePipe

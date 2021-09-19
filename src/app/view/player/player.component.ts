@@ -4,6 +4,8 @@ import {PlayerService} from "../../service/player.service";
 import {PlayerDetails} from "../../model/player-details";
 import Swal from "sweetalert2";
 import {Response} from "../../model/response";
+import {ReviewService} from "../../service/review.service";
+import {Review} from "../../model/review";
 
 @Component({
   selector: 'app-player',
@@ -16,21 +18,27 @@ export class PlayerComponent implements OnInit {
   playerDetails:PlayerDetails = new PlayerDetails();
   response:Response = new Response();
   loading: boolean = false;
+  reviewList:Array<Review> = new Array<Review>();
+  review:Review = new Review();
+  reviewUserId: any;
+  receiveUserId: any;
 
-  constructor(private routerActive: ActivatedRoute,private playerService:PlayerService) { }
+
+  constructor(private routerActive: ActivatedRoute,private playerService:PlayerService,private reviewService:ReviewService) { }
 
   ngOnInit(): void {
-
+    this.reviewUserId = sessionStorage.getItem("user");
     this.routerActive.params.subscribe((params) => {
       if (params.id != null || params.id != undefined) {
-        this.getPlayer(params.id);
+        this.receiveUserId = params.id;
+        this.getPlayer(this.receiveUserId);
+        this.getAllReviewByUser()
       }
     });
   }
 
   setRate(number: number) {
     this.rateNumber = number;
-    console.log(number)
   }
 
    getPlayer(id: any) {
@@ -47,6 +55,51 @@ export class PlayerComponent implements OnInit {
           allowOutsideClick: false,
           allowEscapeKey: false
         })
+      }
+    );
+  }
+
+  saveReview(){
+
+    this.loading = true;
+    this.review.reviewUserId = this.reviewUserId;
+    this.review.receiveUserId = this.reviewUserId;
+    this.review.rate = this.rateNumber;
+
+    console.log(this.review)
+    this.reviewService.saveReview(this.review).subscribe(
+      res=>{
+        this.loading = false;
+        this.response = res;
+        Swal.fire({
+          title: this.response.message,
+          icon: 'success',
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        }).then( res=>{
+          this.getAllReviewByUser();
+        })
+      },error => {
+        this.loading = false;
+        this.response = error.error;
+        Swal.fire({
+          title: this.response.message,
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        })
+      }
+    );
+
+  }
+
+  getAllReviewByUser() {
+    this.reviewService.getAllReviewByUser(this.reviewUserId).subscribe(
+      res=>{
+        this.reviewList = res;
+        console.log(this.reviewList)
       }
     );
   }

@@ -8,10 +8,10 @@
 
       <div class="uk-width-1-1 uk-row-first">
         <div class="uk-panel">
-          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/head-bg.jpg');">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/dash2.jpg');">
             <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
             <div class="uk-position-cover uk-flex uk-flex-center head-title">
-              <h1>New Match</h1>
+              <h1>New Tournament</h1>
             </div>
           </div>
         </div>
@@ -255,7 +255,7 @@
                     <img *ngIf="ground.id == playGround.id" src="assets/images/1840743.png" alt="Sale">
                   </div>
                   <a href="product.html">
-                    <img class="jshop_img" src="{{ground.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie">
+                    <img class="jshop_img" src="{{ground.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie" style="height: 300px">
                   </a>
                   <div class="name">
                     <h2 class="product_title"><a (click)="selectGround(ground)">Select this ground</a></h2>
@@ -271,7 +271,7 @@
                   </div>
                 </div>
                 <div class="buttons">
-                  <a class="button_buy" href="#">{{ground.price}}</a> &nbsp;
+                  <a class="button_buy" href="#">RS. {{ground.price}}</a> &nbsp;
                 </div>
               </div>
             </div>
@@ -299,7 +299,7 @@
             <div class="row">
               <div class="col-12">
                 <h4>
-                  <i class="fa fa-globe"></i> CallTeam, New Match.
+                  <i class="fa fa-globe"></i> CallTeam, New Tournament.
                   <small class="float-right">Date: {{date | date }}</small>
                 </h4>
               </div>
@@ -348,7 +348,7 @@
                 <img style="width: 90px;height: 40px;" src="assets/images/payhere-logo.png" alt="Paypal">
 
                 <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                  We have now entered Sri Lanka's recognized and trusted payment method into settings.lk. You can now do checkouts with us reliably.
+                  We have now entered Sri Lanka's recognized and trusted payment method into Call Team. You can now do checkouts with us reliably.
                 </p>
               </div>
               <!-- /.col -->
@@ -359,17 +359,21 @@
                   <table class="table">
                     <tr>
                       <th style="width:50%">Subtotal:</th>
-                      <td>$250.30</td>
+                      <td>{{totalPrice}}</td>
                     </tr>
                     <tr>
                       <th>Discount: </th>
-                      <td>$10.34</td>
+                      <td>Rs 0.00</td>
                     </tr>
                     <tr>
                       <th>Total:</th>
-                      <td>$265.24</td>
+                      <td>{{totalPrice}}</td>
                     </tr>
                   </table>
+                  <div class="form-group">
+                    <label for="tournamentDescription">Payment Note </label>
+                    <textarea id="paymentNote" name="paymentNote" class="form-control" rows="2" [(ngModel)]="tournament.paymentNote"></textarea>
+                  </div>
                 </div>
               </div>
               <!-- /.col -->
@@ -379,8 +383,8 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
               <div class="col-12">
-                <input *ngIf="step2" type="submit" value="Previous" class="btn btn-primary " style="width: 100px;height: 40px;" (click)="backFinal()">
-                <button type="button" class="btn btn-success float-right" (click)="paynow()"><i class="far fa-credit-card"></i> Submit
+                <input *ngIf="step4" type="submit" value="Previous" class="btn btn-primary " style="width: 100px;height: 40px;" (click)="backFinal()">
+                <button type="button" class="btn btn-success float-right" (click)="paynow()"><i class="far fa-credit-card" *ngIf="totalPrice != 'FREE' "></i> Submit
                   Payment
                 </button>
                 <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;" (click)="save()">

@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   loginResponse:LoginResponse = new LoginResponse();
 
   heroForm : any;
+  fullNameValidate: boolean = false;
+
 
 
   constructor(private userService:UserService,private authService:AuthService,private route:Router) { }
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
 
     if(this.user.password != this.user.repassword){
       Swal.fire({
-        title: "Passwords are not matched",
+        title: "Entered passwords do not match",
         icon: 'error',
         showConfirmButton: true,
         allowOutsideClick: false,
@@ -58,38 +60,65 @@ export class LoginComponent implements OnInit {
       })
     }else {
 
-      this.loading = true;
-      this.userService.register(this.user).subscribe(
-        res => {
-          this.loading = false;
-          this.response = res;
-          Swal.fire({
-            title: this.response.message,
-            icon: 'success',
-            showConfirmButton: true,
-            allowOutsideClick: false,
-            allowEscapeKey: false
-          }).then(
-            res => {
-              this.islogin = true;
-            }
-          );
-        }, error => {
-          this.loading = false;
-          this.response = error.error;
-          Swal.fire({
-            title: this.response.message,
-            icon: 'error',
-            showConfirmButton: true,
-            allowOutsideClick: false,
-            allowEscapeKey: false
-          })
-        }
-      );
+
+      let emailRegExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+      console.log(this.user.password)
+      if(this.user.fullName == ""){
+        this.generateValidationAlert("Full name is required");
+      }else if(this.user.email == ""){
+        this.generateValidationAlert("Email is required");
+      }else if(this.user.email == ""){
+        this.generateValidationAlert("Email is required");
+      }else if(!emailRegExp.test(this.user.email)){
+        this.generateValidationAlert("Invalid email address");
+      }else if(this.user.password == ""){
+        this.generateValidationAlert("Invalid password");
+      }else{
+
+       this.loading = true;
+
+        this.userService.register(this.user).subscribe(
+          res => {
+            this.loading = false;
+            this.response = res;
+            Swal.fire({
+              title: this.response.message,
+              icon: 'success',
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            }).then(
+              res => {
+                this.islogin = true;
+              }
+            );
+          }, error => {
+            this.loading = false;
+            this.response = error.error;
+            Swal.fire({
+              title: this.response.message,
+              icon: 'error',
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            })
+          }
+        );
+      }
     }
 
   }
 
+  generateValidationAlert(message:String){
+    Swal.fire({
+      title: message,
+      icon: 'warning',
+      showConfirmButton: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false
+    })
+  }
 
   login() {
 

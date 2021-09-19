@@ -3,11 +3,11 @@
     <section id="tm-top-a" class="tm-top-a uk-grid uk-grid-collapse" data-uk-grid-match="{target:'> div > .uk-panel'}" data-uk-grid-margin="">
       <div class="uk-width-1-1 uk-row-first">
         <div class="uk-panel">
-          <div class="uk-cover-background uk-position-relative head-match-wrap" style="height: 590px; background-image: url('assets/images/head-bg-match.jpg');">
+          <div class="uk-cover-background uk-position-relative head-match-wrap" style="height: 590px; background-image: url('assets/images/sport-wallpaper.jpg');">
             <img class="uk-invisible" src="assets/images/head-bg-match.jpg" alt="">
             <div class="uk-position-cover uk-flex-center head-news-title">
               <h1>
-                InProgress Match
+                InProgress Tournaments
               </h1>
               <div class="clear"></div>
               <div class="va-latest-wrap">
@@ -16,11 +16,11 @@
                     <h3>Latest <span>Results</span></h3>
                     <div class="tournament">
                       <address>
-                        Cambridgeshire UK               <br><br>
+                                  <br><br>
                       </address>
                     </div>
                     <div class="date">
-                      November 29, 2015 | 12:00 am
+
                     </div>
                   </div>
                 </div>
@@ -34,20 +34,20 @@
                       </div>
                       <div class="uk-width-3-12 name uk-vertical-align">
                         <div class="wrap uk-vertical-align-middle">
-                          Cambridgehire
+
                         </div>
                       </div>
                       <div class="uk-width-2-12 score">
-                        <div class="title">score</div>
-                        <div class="table">
-                          <div class="left">3</div>
-                          <div class="right">5</div>
-                          <div class="uk-clearfix"></div>
-                        </div>
+<!--                        <div class="title">score</div>-->
+<!--                        <div class="table">-->
+<!--                          <div class="left" style="content: 'ava'">3</div>-->
+<!--                          <div class="right">5</div>-->
+<!--                          <div class="uk-clearfix"></div>-->
+<!--                        </div>-->
                       </div>
                       <div class="uk-width-3-12 name alt uk-vertical-align">
                         <div class="wrap uk-vertical-align-middle">
-                          china
+
                         </div>
                       </div>
                       <div class="uk-width-2-12 center">
@@ -125,39 +125,12 @@
     </div>
     <aside class="tm-sidebar-a uk-width-medium-1-4 uk-pull-3-4 uk-row-first">
       <div class="uk-panel categories-sidebar">
-        <h3 class="uk-panel-title">Categories</h3>
+        <h3 class="uk-panel-title">Sports</h3>
         <div>
           <ul class="nav menu">
-            <li class="item-3">
+            <li class="item-3" *ngFor="let sport of sportList">
               <a href="news.html">
-                Overall <span class="label">(3)</span>
-              </a>
-            </li>
-            <li class="item-4">
-              <a href="news.html">
-                Players <span class="label">(2)</span>
-              </a>
-            </li>
-            <li class="item-2">
-              <a href="news.html">
-                Life <span class="label">(4)</span>
-              </a>
-            </li>
-            <li class="item-5 parent">
-              <a href="news.html">
-                Entertainment <span class="label">(1)</span>
-              </a>
-              <ul class="">
-                <li class="item-7">
-                  <a href="news.html">
-                    Art Style <span class="label">(3)</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="item-6">
-              <a href="news.html">
-                Uncategorized <span class="label">(3)</span>
+                {{sport.name}}<span class="label"></span>
               </a>
             </li>
           </ul>
@@ -165,13 +138,13 @@
         <div class="clearfix"> </div>
       </div>
       <div class="uk-panel newsletter-sidebar">
-        <h3 class="uk-panel-title">Newsletter</h3>
+        <h3 class="uk-panel-title">Sport updates</h3>
         <div class="acymailing_modulenewsletter-sidebar" id="acymailing_module_formAcymailing40192">
           <div class="acymailing_fulldiv" id="acymailing_fulldiv_formAcymailing40192">
             <form id="formAcymailing40192" action="/index.php/match" onsubmit="return submitacymailingform('optin','formAcymailing40192')" method="post" name="formAcymailing40192">
               <div class="acymailing_module_form">
-                <div class="mail-title">Newsletters</div>
-                <div class="acymailing_introtext">Donec at ex aliquet, porttitor lacus eget</div>
+                <div class="mail-title">Sport updates</div>
+                <div class="acymailing_introtext">Share my email to all sport matches updates in my city</div>
                 <div class="clear"></div>
                 <div class="space"></div>
                 <table class="acymailing_form">
@@ -200,68 +173,28 @@
         </div>
       </div>
       <div class="uk-panel news-sidebar">
-        <h3 class="uk-panel-title">Latest News</h3>
-        int(3)
-        <article class="has-context ">
+        <h3 class="uk-panel-title">Play Grounds</h3>
+        <article class="has-context " *ngFor="let ground of playGroundList">
           <div class="latest-news-wrap">
             <div class="img-wrap">
               <a href="news-single.html">
-                <img src="images/35b8bf93115eb2b8da9f8b4f41fdb0fd.jpg" class="img-polaroid" alt="">
+                <img src="{{ground.imagePath}}" class="img-polaroid" alt="">
               </a>
             </div>
             <div class="info">
               <div class="date">
-                November 25, 2015
+                {{ground.city}}
               </div>
               <div class="name">
                 <h4>
                   <a href="news-single.html">
-                    Suspendisse purus enim, dictum sed lorem ac, sodales maximus est                    </a>
+                    {{ground.name}}                    </a>
                 </h4>
               </div>
             </div>
           </div>
         </article>
-        <article class="has-context ">
-          <div class="latest-news-wrap">
-            <div class="img-wrap">
-              <a href="news-single.html">
-                <img src="images/4e9ed1f24d1f63b923e67456774158a3.jpg" class="img-polaroid" alt="">
-              </a>
-            </div>
-            <div class="info">
-              <div class="date">
-                November 20, 2015
-              </div>
-              <div class="name">
-                <h4>
-                  <a href="news-single.html">
-                    Suspendisse purus enim, dictum sed lorem ac, sodales maximus est                    </a>
-                </h4>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="has-context ">
-          <div class="latest-news-wrap">
-            <div class="img-wrap">
-              <a href="news-single.html">
-                <img src="images/19896c58825d0206bd858f7e50bf51b2.jpg" class="img-polaroid" alt="">
-              </a>
-            </div>
-            <div class="info">
-              <div class="date">
-                November 20, 2015
-              </div>
-              <div class="name">
-                <h4>
-                  <a href="news-single.html">
-                    Cum sociis natoque penatibus et magnis dis parturient                    </a>
-                </h4>
-              </div>
-            </div>
-          </div>
-        </article>
+
       </div>
     </aside>
   </div>

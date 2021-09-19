@@ -16,8 +16,12 @@ export class StadiumDetailsComponent implements OnInit {
   playGround:PlayGround = new PlayGround();
   response:Response = new Response();
   title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007;
+  lat: any = 24.799448
+  lng: any = 120.979021
+
+  origin = { lat: 24.799448, lng: 120.979021 };
+  destination = { lat: 24.799524, lng: 120.975017 };
+
 
   constructor(private routerActive: ActivatedRoute,private playGroundService:PlayGroundService) { }
 
@@ -37,6 +41,10 @@ export class StadiumDetailsComponent implements OnInit {
       res=>{
         this.loading = false;
         this.playGround = res;
+        this.lng = this.playGround.longitude;
+        this.lat = this.playGround.latitude;
+        // this.lng = 6.4568377;
+        // this.lat =79.9285797;
       },error => {
         this.loading = false;
         this.response = error.error;

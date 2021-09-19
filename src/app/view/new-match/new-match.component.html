@@ -8,8 +8,8 @@
 
       <div class="uk-width-1-1 uk-row-first">
         <div class="uk-panel">
-          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/head-bg.jpg');">
-            <img class="uk-invisible" src="../../../assets/images/dash4.jpg" alt="" height="290" width="1920">
+          <div class="uk-cover-background uk-position-relative head-wrap" style="height: 290px; background-image: url('/assets/images/0b46b20.jpg');">
+            <img class="uk-invisible" src="../../../assets/images/wp2940449.jpg" alt="" height="290" width="1920">
             <div class="uk-position-cover uk-flex uk-flex-center head-title">
               <h1>New Match</h1>
             </div>
@@ -33,7 +33,7 @@
     <div class="row justify-content-center mt-0">
       <div class="col-12 col-sm-10 col-md-12 col-lg-12 text-center p-0 mt-3 mb-2">
         <div class="cards px-0 pt-4 pb-0 mt-3 mb-3">
-          <h2><strong>Compete Your Following Steps</strong></h2>
+          <h2><strong>Compete Following Steps</strong></h2>
           <p>create a new match pool</p>
           <div class="row">
             <div class="col-md-12 mx-0">
@@ -42,10 +42,9 @@
                 <ul id="progressbar">
                   <li class="{{activeDetails}}" id="personal"><strong>Details</strong></li>
                   <li class="{{activePool}}" id="account"><strong>Pool</strong></li>
-                  <li class="{{activeGround}}" id="payment"><strong>Ground</strong></li>
+                  <li class="{{activeGround}}" id="payment"><strong>Stadium</strong></li>
                   <li  class="{{activeFinish}}" id="confirm"><strong>Finish</strong></li>
-                </ul> <!-- fieldsets -->
-
+                </ul>
               </form>
             </div>
           </div>
@@ -238,7 +237,7 @@
     <div class="col-md-12">
       <div class="card card-primary">
         <div class="card-header" style="background-color: dodgerblue">
-          <h3 class="card-title" style="color: white" *ngIf="!selectEdit1">Available Grounds 	&nbsp;	&nbsp;&nbsp; Sport: {{spot.name}} &nbsp;	&nbsp; Date: {{sportPool.date | date}} &nbsp;	&nbsp; Start Time: {{sportPool.startTime}} &nbsp;	&nbsp; End Time: {{sportPool.endTime}} &nbsp;	&nbsp; City: {{sportPool.city}}</h3>
+          <h3 class="card-title" style="color: white" *ngIf="!selectEdit1">Available Stadiums 	&nbsp;	&nbsp;&nbsp; Sport: {{spot.name}} &nbsp;	&nbsp; Date: {{sportPool.date | date}} &nbsp;	&nbsp; Start Time: {{sportPool.startTime}} &nbsp;	&nbsp; End Time: {{sportPool.endTime}} &nbsp;	&nbsp; City: {{sportPool.city}}</h3>
         </div>
         <br>
         <div class="list_product_row uk-grid" data-uk-grid-match="{target:'.uk-panel'}">
@@ -250,7 +249,7 @@
                     <img *ngIf="ground.id == playGround.id" src="assets/images/1840743.png" alt="Sale">
                   </div>
                   <a href="product.html">
-                    <img class="jshop_img" src="{{ground.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie">
+                    <img class="jshop_img" src="{{ground.imagePath}}" alt="Fashionable Mens Hoodie" title="Fashionable Mens Hoodie" style="height: 300px">
                   </a>
                   <div class="name">
                     <h2 class="product_title"><a (click)="selectGround(ground)">Select this ground</a></h2>
@@ -266,7 +265,7 @@
                   </div>
                 </div>
                 <div class="buttons">
-                  <a class="button_buy" href="#">{{ground.price}}</a> &nbsp;
+                  <a class="button_buy" href="#">Rs 1000.00</a> &nbsp;
                 </div>
               </div>
             </div>
@@ -330,7 +329,8 @@
                 <b>Address:</b> {{playGround.address}}<br>
                 <b>City:</b> {{playGround.city}}<br>
                 <b>Contact No:</b> {{playGround.contactNo}}<br>
-                <b>Approval Status:</b> {{playGround.contactNo}}
+                <b>Approval Status:</b> PENDING
+<!--                <b>Approval Status:</b> {{playGround.contactNo}}-->
               </div>
             </div>
 <hr>
@@ -343,7 +343,7 @@
                 <img style="width: 90px;height: 40px;" src="assets/images/payhere-logo.png" alt="Paypal">
 
                 <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                  We have now entered Sri Lanka's recognized and trusted payment method into settings.lk. You can now do checkouts with us reliably.
+                  We have now entered Sri Lanka's recognized and trusted payment method into Call Team. You can now do checkouts with us reliably.
                 </p>
               </div>
               <!-- /.col -->
@@ -354,17 +354,21 @@
                   <table class="table">
                     <tr>
                       <th style="width:50%">Subtotal:</th>
-                      <td>$250.30</td>
+                      <td>Rs 3000.00</td>
                     </tr>
                     <tr>
                       <th>Discount: </th>
-                      <td>$10.34</td>
+                      <td>Rs 0</td>
                     </tr>
                     <tr>
                       <th>Total:</th>
-                      <td>$265.24</td>
+                      <td>Rs 3000.00</td>
                     </tr>
                   </table>
+                  <div class="form-group">
+                    <label for="description">Payment Note : </label>
+                    <textarea id="descriptions" name="description" class="form-control" rows="2" [(ngModel)]="sportPool.description"></textarea>
+                  </div>
                 </div>
               </div>
               <!-- /.col -->

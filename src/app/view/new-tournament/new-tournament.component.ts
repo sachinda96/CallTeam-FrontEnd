@@ -18,6 +18,7 @@ import {Team} from "../../model/team";
 import {MERCHANT_ID} from "../../../environments/environment";
 import {Tournament} from "../../model/tournament";
 import {TournamentService} from "../../service/tournament.service";
+import {ProgressPoolMatch} from "../../model/progress-pool-match";
 
 declare var payhere: any;
 
@@ -39,6 +40,7 @@ export class NewTournamentComponent implements OnInit {
   selectEdit1: boolean = false;
   selectEdit2: boolean = false;
   tournament : Tournament = new Tournament();
+  totalPrice: any = "FREE"
 
   activeGround: any = "";
   sportList:Array<Sport> = new Array<Sport>();
@@ -66,6 +68,7 @@ export class NewTournamentComponent implements OnInit {
   teamSportList:Array<Sport> = new Array<Sport>();
   sportPoolReservation:SportPoolReservation = new SportPoolReservation();
   nopThanTeam: any;
+  progressPoolList: Array<ProgressPoolMatch> = new Array<ProgressPoolMatch>();
 
   constructor(private sportService:SportService,private route:Router,private userService:UserService,private sportPoolService:SportPoolService,private playGroundService:PlayGroundService,private datePipe : DatePipe,private tournamentService:TournamentService) {
 
@@ -183,6 +186,12 @@ export class NewTournamentComponent implements OnInit {
     this.step3 = true;
     this.activeGround = "active";
     this.activePool = "";
+    this.groundList = new Array<PlayGround>();
+    this.playGroundService.getAllBySportId(this.spot.id).subscribe(
+      res=>{
+        this.groundList = res;
+      }
+    );
   }
 
   backGround() {
@@ -342,6 +351,13 @@ export class NewTournamentComponent implements OnInit {
     this.step4 = true;
     this.activeGround = "activeno";
     this.activeFinish = "active";
+
+    if(this.playGround.price != "FREE"){
+      let timeDiff = parseFloat(this.tournament.endTime) - parseFloat(this.tournament.startTime);
+      let price = parseFloat(this.playGround.price) * timeDiff;
+      this.totalPrice = "Rs."+price;
+    }
+
   }
 
 
@@ -353,7 +369,7 @@ export class NewTournamentComponent implements OnInit {
       "return_url": undefined,
       "cancel_url": undefined,
       "notify_url": "",
-      "amount": "2600",
+      "amount": this.totalPrice,
       "order_id": this.userDetails.id,
       "items": this.playGround.name,
       "currency": "LKR",
@@ -386,6 +402,7 @@ export class NewTournamentComponent implements OnInit {
 
   backFinal() {
     this.activeFinish= "noactive";
+    this.step4 = false;
     this.poolNext();
   }
 

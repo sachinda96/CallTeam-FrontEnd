@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {interval} from "rxjs";
 
 @Component({
   selector: 'app-nav',
@@ -17,11 +18,20 @@ export class NavComponent implements OnInit {
       this.isLogin = false;
     }
 
+    interval(10*100)
+      .subscribe(() => {
+        let id = sessionStorage.getItem("user");
+        if(id ==null){
+            this.isLogin = false;
+        }else{
+          this.isLogin = true;
+        }
+      });
 
   }
 
 
   logout() {
-
+    sessionStorage.clear();
   }
 }

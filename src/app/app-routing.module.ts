@@ -15,6 +15,7 @@ import {ViewStadiumComponent} from "./view/view-stadium/view-stadium.component";
 import {StadiumDetailsComponent} from "./view/stadium-details/stadium-details.component";
 import {PlayersComponent} from "./view/players/players.component";
 import {PlayerComponent} from "./view/player/player.component";
+import {AdminDashboardComponent} from "./view/admin-dashboard/admin-dashboard.component";
 
 const routes: Routes = [
   { path: '', component: NavComponent,
@@ -67,6 +68,7 @@ const routes: Routes = [
       path: 'login',
       component: LoginComponent
     },
+
     {
       path: 'dashboard',
       component: NavDashboardComponent,
@@ -80,6 +82,10 @@ const routes: Routes = [
 
 
   ]},
+  {
+    path: 'admin',
+    component: AdminDashboardComponent
+  },
 
 ];
 

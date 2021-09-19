@@ -16,4 +16,5 @@ export class Tournament {
   groundId :string = "";
   paymentDto : Payment = new Payment();
   stringDate: string = "";
+  paymentNote: string = "";
 }

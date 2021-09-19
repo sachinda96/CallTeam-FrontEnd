@@ -245,9 +245,9 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    
+
     *border: 0;
-    
+
 }
 /* Headings
  ========================================================================== */
@@ -11885,7 +11885,7 @@ q {
   padding: 0 0 0;
   margin: 0 auto;
   overflow: hidden;
-  background: url("../images/match-view-count.jpg") 50% 50%;
+  background: url("../images/1.jpg") 50% 50%;
   background-size: cover;
   border-color: #ffc722;
 }
@@ -15958,7 +15958,7 @@ table {
 .list-article .wrapper {
   position: relative;
 }
-.list-article .article-actions { 
+.list-article .article-actions {
   position: relative;
  }
  .pagination {
@@ -15988,7 +15988,7 @@ table {
 }
 
 .mes-color {
-  color: #ffc722; 
+  color: #ffc722;
 }
 #sort_count { margin-bottom: 20px; }
 
