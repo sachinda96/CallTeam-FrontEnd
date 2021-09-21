@@ -47,6 +47,9 @@ export class AdminDashboardComponent implements OnInit {
   tempSport: any = new Sport();
   not: number = 0;
   filePlayGround: any;
+  isSelectDashboard: boolean = true;
+  isSportSelect: boolean = false;
+  isStadiumSelect: boolean = false;
 
 
   constructor(private sportService:SportService,private categoryService:CategoryService,private playGroundService:PlayGroundService) { }
@@ -375,5 +378,31 @@ export class AdminDashboardComponent implements OnInit {
     this.playGround = playground;
     console.log(this.playGround)
     this.playgroundImagePath = playground.imagePath;
+  }
+
+  isSport() {
+    this.isSelectDashboard = false;
+    this.isSportSelect = true;
+    this.isStadiumSelect = false;
+  }
+
+  isDashboard() {
+    this.isSelectDashboard = true;
+    this.isSportSelect = false;
+    this.isStadiumSelect = false;
+  }
+
+  isStadi() {
+    this.isSelectDashboard = false;
+    this.isSportSelect = false;
+    this.isStadiumSelect = true;
+  }
+
+  logOut() {
+
+  }
+
+  isCategory() {
+
   }
 }

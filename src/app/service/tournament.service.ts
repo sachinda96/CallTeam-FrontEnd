@@ -19,7 +19,15 @@ export class TournamentService {
     return this.http.get<any>(MAIN+"/tournament/tournamentsByUserCity/"+id);
   }
 
+  getTournamentsCreateByUser(id:any){
+    return this.http.get<any>(MAIN+"/tournament/getTournamentsCreateByUser/"+id);
+  }
+
   getTournament(id:any){
     return this.http.get<any>(MAIN+"/tournament/getTournament/"+id);
+  }
+
+  cancelTournament(id:any){
+    return this.http.delete<any>(MAIN+"/tournament/cancelTournament/"+id);
   }
 }

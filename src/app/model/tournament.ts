@@ -14,6 +14,7 @@ export class Tournament {
   noOfTeam : number = 0;
   sportId : string = "";
   groundId :string = "";
+  userId : string = "";
   paymentDto : Payment = new Payment();
   stringDate: string = "";
   paymentNote: string = "";

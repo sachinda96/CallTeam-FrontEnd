@@ -28,24 +28,25 @@
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
-              <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Dashboard</a></li>
-              <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Sport</a></li>
-              <li class="nav-item"><a class="nav-link" href="#stadium" data-toggle="tab">Stadium</a></li>
-              <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Category</a></li>
+              <li class="nav-item"><a class="nav-link active" data-toggle="tab" (click)="isDashboard()">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" (click)="isSport()">Sport</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" (click)="isStadi()">Stadium</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" (click)="isCategory()">Category</a></li>
+              <li class="nav-item"><a class="nav-link" data-toggle="tab" (click)="logOut()">Logout</a></li>
             </ul>
           </div><!-- /.card-header -->
           <div class="card-body">
             <div class="tab-content">
-              <div class="tab-pane" id="activity">
+              <div id="activity" *ngIf="isSelectDashboard">
 
                 <div class="row">
                   <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                       <div class="inner">
-                        <h3>150</h3>
+                        <h3>0</h3>
 
-                        <p>New Orders</p>
+                        <p>New Players</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -58,9 +59,9 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                       <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3>0</h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Total Sports</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -73,9 +74,9 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                       <div class="inner">
-                        <h3>44</h3>
+                        <h3>0</h3>
 
-                        <p>User Registrations</p>
+                        <p>Total Stadiums</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -88,9 +89,71 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                       <div class="inner">
-                        <h3>65</h3>
+                        <h3>0</h3>
 
-                        <p>Unique Visitors</p>
+                        <p>Total Payments</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                </div>
+                <div class="row">
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-gray">
+                      <div class="inner">
+                        <h3>0</h3>
+
+                        <p>Total InProgress Matches</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-bag"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-lime">
+                      <div class="inner">
+                        <h3>0</h3>
+
+                        <p>Total InProgress Tournament</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-fuchsia">
+                      <div class="inner">
+                        <h3>0</h3>
+
+                        <p>Total Matches</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-indigo">
+                      <div class="inner">
+                        <h3>0</h3>
+
+                        <p>Total Tournaments</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -102,10 +165,9 @@
                 </div>
 
 
-
               </div>
 
-              <div class="tab-pane" id="timeline">
+              <div id="timeline" *ngIf="isSportSelect">
                 <div >
                   <div *ngIf="isView" class="row">
                     <div class="col-12">
@@ -233,7 +295,7 @@
                 </div>
                 </div>
 
-              <div class="tab-pane" id="stadium">
+              <div id="stadium" *ngIf="isStadiumSelect">
                 <div >
                   <div *ngIf="isStadiumView" class="row">
                     <div class="col-12">
@@ -640,6 +702,7 @@
 <!--                  </div>-->
 <!--                </form>-->
 <!--              </div>-->
+
             </div>
           </div>
         </div>

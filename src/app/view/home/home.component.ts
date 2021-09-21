@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {ProgressPoolMatch} from "../../model/progress-pool-match";
+import {SportPoolService} from "../../service/sport-pool.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,6 +12,8 @@ import {OwlOptions} from "ngx-owl-carousel-o";
   ]
 })
 export class HomeComponent implements OnInit {
+
+  progressPoolList: Array<ProgressPoolMatch> = new Array<ProgressPoolMatch>();
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -34,9 +39,27 @@ export class HomeComponent implements OnInit {
     },
     nav: true
   }
-  constructor() { }
+
+  id: any;
+
+  constructor(private sportPoolService:SportPoolService,private router:Router) { }
 
   ngOnInit(): void {
+    this.getSportPool();
   }
 
+
+  getSportPool() {
+    this.id = sessionStorage.getItem("user");
+    this.sportPoolService.getAllSportPoolByUser(this.id).subscribe(
+      res=>{
+        this.progressPoolList = res;
+      }
+
+    );
+  }
+
+  naviGateMatchPool() {
+    this.router.navigate(['matchpool'])
+  }
 }

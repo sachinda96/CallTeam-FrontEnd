@@ -10,6 +10,11 @@ import {Sport} from "../../model/sport";
 import {interval} from "rxjs";
 import {SportPoolService} from "../../service/sport-pool.service";
 import {ProgressPoolMatch} from "../../model/progress-pool-match";
+import {Router} from "@angular/router";
+import {PlayGround} from "../../model/play-ground";
+import {SportPool} from "../../model/sport-pool";
+import {TournamentPool} from "../../model/tournament-pool";
+import {TournamentService} from "../../service/tournament.service";
 
 @Component({
   selector: 'app-nav-dashboard',
@@ -41,14 +46,40 @@ export class NavDashboardComponent implements OnInit {
   sport:any;
   id: any;
   progressPoolList: Array<ProgressPoolMatch> = new Array<ProgressPoolMatch>();
+  tournamentPool: Array<TournamentPool> = new Array<TournamentPool>();
+  isMatchSelect: boolean =  true;
+  isTournamentSelect: boolean = false;
+  isSettingSelect: boolean = false;
 
-  constructor(private userService:UserService,private datePipe : DatePipe,private sportService:SportService,private sportPoolService : SportPoolService) { }
+
+  constructor(private userService:UserService,private datePipe : DatePipe,private sportService:SportService,private sportPoolService : SportPoolService,private router:Router,private tournamentService:TournamentService) { }
 
   ngOnInit(): void {
     this.getProfileData();
     this.getAllSports();
     this.getSportPool();
+    this.getTournaments();
     this.tempDate = this.datePipe.transform(new Date(),'yyyy-MM-dd');
+  }
+
+  getTournaments() {
+    this.id = sessionStorage.getItem("user");
+    this.tournamentPool = new Array<TournamentPool>();
+    this.tournamentService.getTournamentsCreateByUser(this.id).subscribe(
+      res=>{
+        this.tournamentPool = res;
+      },error => {
+        this.loading = false;
+        this.response = error.error;
+        Swal.fire({
+          title: this.response.message,
+          icon: 'error',
+          showConfirmButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false
+        })
+      }
+    );
   }
 
   logOut() {
@@ -177,8 +208,10 @@ export class NavDashboardComponent implements OnInit {
 
   getSportPool() {
     this.id = sessionStorage.getItem("user");
-    this.sportPoolService.getAllSportPoolByUser(this.id).subscribe(
+    this.progressPoolList = new Array<ProgressPoolMatch>();
+    this.sportPoolService.getAllSportPoolCreateByUser(this.id).subscribe(
       res=>{
+        console.log(res)
         this.progressPoolList = res;
       },error => {
         this.loading = false;
@@ -194,7 +227,109 @@ export class NavDashboardComponent implements OnInit {
     );
   }
 
-  cancel(pool: any) {
+  cancel(pool: ProgressPoolMatch) {
 
+      Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        showConfirmButton: true,
+        showCancelButton:true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        confirmButtonText: 'Yes, cancel it!'
+      }).then((result) => {
+        if(result.isConfirmed){
+          this.sportPoolService.cancelSportPool(pool.id).subscribe(
+            res=>{
+              this.loading = false;
+              this.response = res;
+              this.getTournaments();
+              Swal.fire({
+                title: this.response.message,
+                icon: 'success',
+                showConfirmButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false
+              })
+            },error => {
+              this.loading = false;
+              this.response = error.error;
+              Swal.fire({
+                title: this.response.message,
+                icon: 'error',
+                showConfirmButton: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false
+              })
+            }
+          );
+        }
+      });
+
+  }
+
+  routeJoin(pool:ProgressPoolMatch) {
+    this.router.navigate(['joinpool',pool.id])
+  }
+
+  routeTournament(tournament: TournamentPool) {
+    this.router.navigate(['jointournament',tournament.id])
+  }
+
+  cancelTournament(tournament: TournamentPool) {
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showConfirmButton: true,
+      showCancelButton:true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      confirmButtonText: 'Yes, cancel it!'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.tournamentService.cancelTournament(tournament.id).subscribe(
+          res=>{
+            this.loading = false;
+            this.response = res;
+            this.getSportPool();
+            Swal.fire({
+              title: this.response.message,
+              icon: 'success',
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            })
+          },error => {
+            this.loading = false;
+            this.response = error.error;
+            Swal.fire({
+              title: this.response.message,
+              icon: 'error',
+              showConfirmButton: true,
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            })
+          }
+        );
+      }
+    });
+  }
+
+  isMatch() {
+    this.isMatchSelect = true;
+    this.isTournamentSelect = false;
+    this.isSettingSelect = false;
+  }
+
+  isTournament() {
+    this.isMatchSelect = false;
+    this.isTournamentSelect = true;
+    this.isSettingSelect = false;
+  }
+
+  isSettings() {
+    this.isMatchSelect = false;
+    this.isTournamentSelect = false;
+    this.isSettingSelect = true;
   }
 }

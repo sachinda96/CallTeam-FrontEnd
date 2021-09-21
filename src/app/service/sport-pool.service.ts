@@ -38,4 +38,11 @@ export class SportPoolService {
     return this.http.get<any>(MAIN+"/pool/getSportPool/"+id);
   }
 
+  getAllSportPoolCreateByUser(id: any) {
+    return this.http.get<any>(MAIN+"/pool/getAllSportPoolCreateByUser/"+id);
+  }
+
+  cancelSportPool(id: any){
+    return this.http.delete<any>(MAIN+"/pool/cancelSportPool/"+id);
+  }
 }

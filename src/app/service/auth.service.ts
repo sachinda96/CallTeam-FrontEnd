@@ -15,4 +15,8 @@ export class AuthService {
   login(login:Login):Observable<any>{
     return this.http.post(MAIN+"/user/login",login);
   }
+
+  adminLogin(login:Login){
+    return this.http.post<any>(MAIN+"/admin",login);
+  }
 }

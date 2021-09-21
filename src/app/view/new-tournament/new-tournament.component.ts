@@ -413,7 +413,7 @@ export class NewTournamentComponent implements OnInit {
     this.tournament.groundId = this.playGround.id;
     this.tournament.sportId = this.spot.id;
     this.tournament.poolId =  this.reservation.poolId;
-
+    this.tournament.userId = this.id;
     this.tournamentService.save(this.tournament).subscribe(
       response=>{
         this.loading = false;

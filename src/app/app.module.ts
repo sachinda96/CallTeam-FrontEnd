@@ -26,6 +26,7 @@ import { PlayersComponent } from './view/players/players.component';
 import { PlayerComponent } from './view/player/player.component';
 import { AdminDashboardComponent } from './view/admin-dashboard/admin-dashboard.component';
 import {AgmDirectionModule} from "agm-direction";
+import { AdminLoginComponent } from './view/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {AgmDirectionModule} from "agm-direction";
     StadiumDetailsComponent,
     PlayersComponent,
     PlayerComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
